@@ -2,7 +2,7 @@
 .idea
 
 # Build results
-[Dd]ebug/
+/api/bin/
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
