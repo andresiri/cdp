@@ -2,5 +2,7 @@
 .idea
 bin/
 obj/
-Debug/
-Release/
+api/bin/
+api/obj/
+[Dd]ebug/
+[Rr]elease/
