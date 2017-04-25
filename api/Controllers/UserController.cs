@@ -17,16 +17,16 @@ namespace api.Controllers
         }
 
         [HttpPost]
-        public JsonResult Post(User obj)
+        public JsonResult Post([FromBody]User obj)
         {
             try
-            {
+            {               
                 var newUser = _userService.Create(obj);
                 return Json(newUser);
             }
             catch (Exception ex)
             {
-                return Json(ex.Message);
+                return Json(ex.ToString());
             }
         }
 

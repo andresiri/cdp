@@ -20,14 +20,12 @@ namespace Domain.Entities
         public byte Number { get; set; }
         public Position? Position { get; set; }
 
-        public IList<ValidationFailure> Validate()
+        public override IList<ValidationFailure> GetModelErrors()
         {
             var validator = new UserValidation();
             var results = validator.Validate(this);
 
-            var failures = results.Errors;
-
-            throw new Exception(failures[0].ErrorMessage);
+            return results.Errors;
         }
     }
 }

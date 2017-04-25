@@ -23,7 +23,8 @@ namespace api.Context
                     FirstName = "Andre",
                     LastName = "Miranda",
                     Number = 8,
-                    Password = "andre"
+                    Password = "andre",
+                    Position = Position.MeioCampo
                 },
                 new User
                 {
@@ -31,7 +32,8 @@ namespace api.Context
                     FirstName = "Helio",
                     LastName = "Feliciano",
                     Number = 7,
-                    Password = "helio"
+                    Password = "helio",
+                    Position = Position.Atacante
                 }
             };
 
