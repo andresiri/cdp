@@ -26,7 +26,7 @@ namespace api.Controllers
             }
             catch (Exception ex)
             {
-                return Json(ex.ToString());
+                return Json(ex.Message);
             }
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using domain.Lib;
 using Domain.Entities;
 
 namespace api.Context
@@ -23,7 +24,7 @@ namespace api.Context
                     FirstName = "Andre",
                     LastName = "Miranda",
                     Number = 8,
-                    Password = "andre",
+                    Password = Password.Hash("andre", "andremirannda@gmail.com"),
                     Position = Position.MeioCampo
                 },
                 new User
@@ -32,7 +33,7 @@ namespace api.Context
                     FirstName = "Helio",
                     LastName = "Feliciano",
                     Number = 7,
-                    Password = "helio",
+                    Password = Password.Hash("helio", "heliofeliciano@gmail.com"),
                     Position = Position.Atacante
                 }
             };

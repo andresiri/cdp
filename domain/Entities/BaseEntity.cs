@@ -18,8 +18,7 @@ namespace Domain.Entities
 
             foreach (var error in errors)
             {
-                Console.WriteLine(error.PropertyName + " " + error.AttemptedValue + "/n");
-                string.Concat(errorsText, error.PropertyName + " " + error.ErrorCode + "/n");
+                errorsText += error.ErrorMessage + "\n";
             }
 
             if (!string.IsNullOrEmpty(errorsText))

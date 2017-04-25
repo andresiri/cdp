@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Domain.Entities.Validations;
 using FluentValidation.Results;
 
@@ -17,7 +16,7 @@ namespace Domain.Entities
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Nickname { get; set; }
-        public byte Number { get; set; }
+        public byte? Number { get; set; }
         public Position? Position { get; set; }
 
         public override IList<ValidationFailure> GetModelErrors()

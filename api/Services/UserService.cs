@@ -1,5 +1,6 @@
 ﻿using System;
 using api.Context.Transaction;
+using domain.Lib;
 using domain.Services;
 using Domain.Entities;
 
@@ -20,14 +21,14 @@ namespace api.Services
             {
                 obj.Validate();
 
-//                var existentUser = _unitOfWork.UserRepository.GetByEmailAddress(obj.Email);
-//
-//                if (existentUser != null)
-//                {
-//                    throw new Exception("Email already in use.");
-//                }
+                var existentUser = _unitOfWork.UserRepository.GetByEmailAddress(obj.Email);
 
-//                obj.Password = Password.hash(obj.Password, obj.Email);
+                if (existentUser != null)
+                {
+                    throw new Exception("Email already in use.");
+                }
+
+                obj.Password = Password.Hash(obj.Password, obj.Email);
 
                 var newUser = _unitOfWork.UserRepository.Create(obj);
                 _unitOfWork.Save();

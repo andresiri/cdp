@@ -12,6 +12,9 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore">
       <Version>1.1.1</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
+      <Version>1.1.1</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational">
       <Version>1.1.1</Version>
     </PackageReference>
@@ -28,10 +31,6 @@
     <ProjectReference Include="..\domain\domain.csproj">
       <Project>{18bcf39c-6c30-44ef-a7e0-96e0807323a6}</Project>
       <Name>domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\repository\repository.csproj">
-      <Project>{096023d7-b6e4-4f2b-890e-b2e4ee2d8b87}</Project>
-      <Name>repository</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
