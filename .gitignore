@@ -1,6 +1,6 @@
 .idea/
 .idea
-api/bin/
-api/obj/
-domain/bin/
-domain/obj/
+bin/
+obj/
+Debug/
+Release/
