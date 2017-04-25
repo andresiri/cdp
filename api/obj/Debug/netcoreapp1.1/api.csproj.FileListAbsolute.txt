@@ -1,0 +1,14 @@
+/Users/andremiranda/RiderProjects/cdp/api/bin/Debug/netcoreapp1.1/api.deps.json
+/Users/andremiranda/RiderProjects/cdp/api/bin/Debug/netcoreapp1.1/api.runtimeconfig.json
+/Users/andremiranda/RiderProjects/cdp/api/bin/Debug/netcoreapp1.1/api.runtimeconfig.dev.json
+/Users/andremiranda/RiderProjects/cdp/api/obj/Debug/netcoreapp1.1/api.csprojResolveAssemblyReference.cache
+/Users/andremiranda/RiderProjects/cdp/api/obj/Debug/netcoreapp1.1/api.csproj.CoreCompileInputs.cache
+/Users/andremiranda/RiderProjects/cdp/api/obj/Debug/netcoreapp1.1/api.AssemblyInfo.cs
+/Users/andremiranda/RiderProjects/cdp/api/bin/Debug/netcoreapp1.1/api.dll
+/Users/andremiranda/RiderProjects/cdp/api/bin/Debug/netcoreapp1.1/api.pdb
+/Users/andremiranda/RiderProjects/cdp/api/bin/Debug/netcoreapp1.1/domain.dll
+/Users/andremiranda/RiderProjects/cdp/api/bin/Debug/netcoreapp1.1/repository.dll
+/Users/andremiranda/RiderProjects/cdp/api/bin/Debug/netcoreapp1.1/domain.pdb
+/Users/andremiranda/RiderProjects/cdp/api/bin/Debug/netcoreapp1.1/repository.pdb
+/Users/andremiranda/RiderProjects/cdp/api/obj/Debug/netcoreapp1.1/api.dll
+/Users/andremiranda/RiderProjects/cdp/api/obj/Debug/netcoreapp1.1/api.pdb

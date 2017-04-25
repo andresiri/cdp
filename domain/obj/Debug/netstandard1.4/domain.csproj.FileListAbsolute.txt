@@ -1,0 +1,8 @@
+/Users/andremiranda/RiderProjects/cdp/domain/bin/Debug/netstandard1.4/domain.deps.json
+/Users/andremiranda/RiderProjects/cdp/domain/bin/Debug/netstandard1.4/domain.dll
+/Users/andremiranda/RiderProjects/cdp/domain/bin/Debug/netstandard1.4/domain.pdb
+/Users/andremiranda/RiderProjects/cdp/domain/obj/Debug/netstandard1.4/domain.csprojResolveAssemblyReference.cache
+/Users/andremiranda/RiderProjects/cdp/domain/obj/Debug/netstandard1.4/domain.csproj.CoreCompileInputs.cache
+/Users/andremiranda/RiderProjects/cdp/domain/obj/Debug/netstandard1.4/domain.AssemblyInfo.cs
+/Users/andremiranda/RiderProjects/cdp/domain/obj/Debug/netstandard1.4/domain.dll
+/Users/andremiranda/RiderProjects/cdp/domain/obj/Debug/netstandard1.4/domain.pdb
