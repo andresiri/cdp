@@ -1,6 +1,8 @@
 .idea/
 .idea
 
+api/bin/*
+
 project.lock.json
 project.fragment.lock.json
 artifacts/
