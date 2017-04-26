@@ -58,9 +58,11 @@ namespace api.Context
                 b.ToTable("arena");
                 b.HasKey(a => a.Id);
                 b.Property(a => a.Id).HasColumnName("id");
+                b.Property(a => a.Name).IsRequired().HasMaxLength(100).HasColumnName("name");
                 b.Property(a => a.Description).IsRequired().HasMaxLength(100).HasColumnName("description");
                 b.Property(a => a.Latitude).HasMaxLength(30).HasColumnName("latitude");
                 b.Property(a => a.Longitude).HasMaxLength(30).HasColumnName("longitude");
+                b.Property(u => u.CreatedAt).IsRequired().HasColumnName("createdAt");
             });
         }
 

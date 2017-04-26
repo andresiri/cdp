@@ -27,4 +27,11 @@
     <ProjectReference Include="..\domain\domain.csproj">
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Migrations\20170426001829_AddArenaTable.Designer.cs" />
+    <Compile Remove="Migrations\20170426001829_AddArenaTable.cs" />
+    <Compile Remove="Migrations\20170426002525_AddArenaTable.Designer.cs" />
+    <Compile Remove="Migrations\20170426002525_AddArenaTable.cs" />
+    <Compile Remove="Migrations\CdpContextModelSnapshot.cs" />
+  </ItemGroup>
 </Project>

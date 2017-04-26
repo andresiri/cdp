@@ -17,7 +17,7 @@ namespace api.Controllers
         }
 
         [HttpPost]
-        public JsonResult Post([FromBody]User obj)
+        public JsonResult Create([FromBody]User obj)
         {
             try
             {

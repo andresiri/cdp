@@ -6,13 +6,10 @@ using domain.Services;
 
 namespace api.Services
 {
-    public class UserService : IUserService
+    public class UserService : BaseService, IUserService
     {
-        readonly IUnitOfWork _unitOfWork;
-
-        public UserService(IUnitOfWork unitOfWork)
+        public UserService(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
-            _unitOfWork = unitOfWork;
         }
 
         public User Create(User obj)

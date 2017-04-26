@@ -10,6 +10,14 @@ namespace api.Context
         {
             context.Database.EnsureCreated();
 
+            InsertUsers(context);
+            InsertArenas(context);
+
+            context.SaveChanges();
+        }
+
+        public static void InsertUsers(CdpContext context)
+        {
             if (context.User.Any())
             {
                 return;
@@ -37,12 +45,29 @@ namespace api.Context
                 }
             };
 
-            foreach (var u in users)
+            foreach (var user in users)
             {
-                context.User.Add(u);
+                context.User.Add(user);
+            }
+        }
+
+        public static void InsertArenas(CdpContext context) 
+        {
+            if (context.Arena.Any()) 
+            {
+                return;
             }
 
-            context.SaveChanges();
+            var arenas = new Arena[]
+            {
+                new Arena {Name = "Arena Capim Macio", Description = "Rua Arena Capim Macio"},
+                new Arena {Name = "Arena Nova Descoberta", Description = "Rua Arena Nova Descoberta"}
+            };
+
+            foreach(var arena in arenas) 
+            {
+                context.Arena.Add(arena);
+            }
         }
     }
 }

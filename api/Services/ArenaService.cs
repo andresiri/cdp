@@ -6,13 +6,10 @@ using Remotion.Linq.Parsing;
 
 namespace api.Services
 {
-    public class ArenaService : IArenaService
+    public class ArenaService : BaseService, IArenaService
     {
-        readonly IUnitOfWork _unitOfWork;
-
-        public ArenaService(IUnitOfWork unitOfWork)
+        public ArenaService(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
-            _unitOfWork = unitOfWork;
         }
 
         public Arena Create(Arena obj)
