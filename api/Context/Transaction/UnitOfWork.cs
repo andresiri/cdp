@@ -6,7 +6,7 @@ namespace api.Context.Transaction
     public class UnitOfWork : IUnitOfWork
     {
         protected CdpContext context;
-        private readonly IDbContextTransaction transaction;
+        readonly IDbContextTransaction transaction;
 
         public UnitOfWork(CdpContext _context)
         {
@@ -14,8 +14,11 @@ namespace api.Context.Transaction
             transaction = context.Database.BeginTransaction();
         }
 
-        private UserRepository userRepository;
+        UserRepository userRepository;
         public UserRepository UserRepository => userRepository ?? (userRepository = new UserRepository(context));
+
+        ArenaRepository arenaRepository;
+        public ArenaRepository ArenaRepository => arenaRepository ?? (arenaRepository = new ArenaRepository(context));
 
         public void Save()
         {

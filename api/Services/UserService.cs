@@ -1,14 +1,14 @@
 ﻿using System;
 using api.Context.Transaction;
+using domain.Entities;
 using domain.Lib;
 using domain.Services;
-using Domain.Entities;
 
 namespace api.Services
 {
     public class UserService : IUserService
     {
-        private readonly IUnitOfWork _unitOfWork;
+        readonly IUnitOfWork _unitOfWork;
 
         public UserService(IUnitOfWork unitOfWork)
         {
@@ -19,6 +19,7 @@ namespace api.Services
         {
             try
             {
+
                 obj.Validate();
 
                 var existentUser = _unitOfWork.UserRepository.GetByEmailAddress(obj.Email);

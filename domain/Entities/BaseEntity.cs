@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using FluentValidation.Results;
 
-namespace Domain.Entities
+namespace domain.Entities
 {
     public abstract class BaseEntity
     {

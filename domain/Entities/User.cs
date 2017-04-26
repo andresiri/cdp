@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using Domain.Entities.Validations;
+using domain.Entities.Validations;
 using FluentValidation.Results;
 
-namespace Domain.Entities
+namespace domain.Entities
 {
     public enum Position
     {

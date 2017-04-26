@@ -9,18 +9,14 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore">
-      <Version>1.1.1</Version>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="1.1.1">
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
-      <Version>1.1.1</Version>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="1.1.1">
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational">
-      <Version>1.1.1</Version>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="1.1.1">
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.1" />
-    <PackageReference Include="SapientGuardian.EntityFrameworkCore.MySql">
-      <Version>7.1.23</Version>
+    <PackageReference Include="SapientGuardian.EntityFrameworkCore.MySql" Version="7.1.23">
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -29,8 +25,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\domain\domain.csproj">
-      <Project>{18bcf39c-6c30-44ef-a7e0-96e0807323a6}</Project>
-      <Name>domain</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

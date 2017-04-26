@@ -9,5 +9,6 @@ namespace api.Context.Transaction
         void Rollback();
 
         UserRepository UserRepository { get; }
+        ArenaRepository ArenaRepository { get; }
     }
 }

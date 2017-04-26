@@ -1,6 +1,6 @@
 ﻿using System;
+using domain.Entities;
 using domain.Services;
-using Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
@@ -9,7 +9,7 @@ namespace api.Controllers
     [Route("api/[controller]")]
     public class UserController : Controller
     {
-        private readonly IUserService _userService;
+        readonly IUserService _userService;
 
         public UserController(IUserService userService)
         {
@@ -20,7 +20,7 @@ namespace api.Controllers
         public JsonResult Post([FromBody]User obj)
         {
             try
-            {               
+            {
                 var newUser = _userService.Create(obj);
                 return Json(newUser);
             }

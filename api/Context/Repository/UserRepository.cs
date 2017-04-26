@@ -1,6 +1,6 @@
 ﻿using System.Linq;
+using domain.Entities;
 using domain.Repositories;
-using Domain.Entities;
 
 namespace api.Context.Repository
 {

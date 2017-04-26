@@ -1,7 +1,6 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
+using domain.Entities;
 using domain.Lib;
-using Domain.Entities;
 
 namespace api.Context
 {

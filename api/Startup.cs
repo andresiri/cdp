@@ -34,8 +34,10 @@ namespace api
         {
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IArenaRepository, ArenaRepository>();
 
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IArenaService, ArenaService>();
 
             services.AddDbContext<CdpContext>(options => options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
 
