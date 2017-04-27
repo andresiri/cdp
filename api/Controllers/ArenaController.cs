@@ -6,7 +6,7 @@ using domain.Entities;
 namespace api.Controllers
 {
     [Produces("application/json")]
-    [Route("api/{controller}")]
+    [Route("api/[controller]")]
     public class ArenaController : Controller
     {
         readonly IArenaService _arenaService;

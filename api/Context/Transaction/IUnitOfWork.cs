@@ -1,8 +1,9 @@
 ﻿using api.Context.Repository;
+using System;
 
 namespace api.Context.Transaction
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWork : IDisposable
     {
         void Save();
         void Commit();
@@ -10,5 +11,7 @@ namespace api.Context.Transaction
 
         UserRepository UserRepository { get; }
         ArenaRepository ArenaRepository { get; }
+        PeladaRepository PeladaRepository { get; }
+        PeladaUserRepository PeladaUserRepository { get; }
     }
 }

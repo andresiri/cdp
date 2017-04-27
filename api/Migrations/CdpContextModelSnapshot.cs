@@ -47,6 +47,52 @@ namespace api.Migrations
                     b.ToTable("arena");
                 });
 
+            modelBuilder.Entity("domain.Entities.Pelada", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("id");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnName("createdAt");
+
+                    b.Property<int>("CreatedByUserId")
+                        .HasColumnName("createdByUserId");
+
+                    b.Property<string>("Name")
+                        .HasColumnName("name")
+                        .HasMaxLength(50);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedByUserId");
+
+                    b.ToTable("pelada");
+                });
+
+            modelBuilder.Entity("domain.Entities.PeladaUser", b =>
+                {
+                    b.Property<int>("PeladaId")
+                        .HasColumnName("peladaId");
+
+                    b.Property<int>("UserId")
+                        .HasColumnName("userId");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnName("createdAt");
+
+                    b.Property<int>("Id")
+                        .HasColumnName("id");
+
+                    b.HasKey("PeladaId", "UserId");
+
+                    b.HasAlternateKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("peladaUser");
+                });
+
             modelBuilder.Entity("domain.Entities.User", b =>
                 {
                     b.Property<int>("Id")
@@ -89,6 +135,27 @@ namespace api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("user");
+                });
+
+            modelBuilder.Entity("domain.Entities.Pelada", b =>
+                {
+                    b.HasOne("domain.Entities.User", "CreatedByUser")
+                        .WithMany("Peladas")
+                        .HasForeignKey("CreatedByUserId")
+                        .HasConstraintName("ForeignKey_Pelada_UserId");
+                });
+
+            modelBuilder.Entity("domain.Entities.PeladaUser", b =>
+                {
+                    b.HasOne("domain.Entities.Pelada", "Pelada")
+                        .WithMany("PeladaUsers")
+                        .HasForeignKey("PeladaId")
+                        .HasConstraintName("ForeignKey_PeladaUser_PeladaId");
+
+                    b.HasOne("domain.Entities.User", "User")
+                        .WithMany("PeladaUsers")
+                        .HasForeignKey("UserId")
+                        .HasConstraintName("ForeignKey_PeladaUser_UserId");
                 });
         }
     }

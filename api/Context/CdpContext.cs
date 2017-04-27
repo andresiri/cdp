@@ -19,11 +19,15 @@ namespace api.Context
 
         public DbSet<User> User { get; set; }
         public DbSet<Arena> Arena { get; set; }
+        public DbSet<Pelada> Pelada { get; set; }
+        public DbSet<PeladaUser> PeladaUser { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             ConfigureUser(modelBuilder);
             ConfigureArena(modelBuilder);
+            ConfigurePelada(modelBuilder);
+            ConfigurePeladaUser(modelBuilder);
 
             foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
             {
@@ -66,6 +70,36 @@ namespace api.Context
             });
         }
 
+        private static void ConfigurePelada(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Pelada>(b =>
+            {
+                b.ToTable("pelada");
+                b.HasKey(p => p.Id);
+                b.Property(p => p.Id).HasColumnName("id");
+                b.Property(p => p.Name).HasColumnName("name").HasMaxLength(50);
+                b.Property(p => p.CreatedByUserId).HasColumnName("createdByUserId");
+                b.Property(p => p.CreatedAt).IsRequired().HasColumnName("createdAt");
+                b.HasOne(p => p.CreatedByUser).WithMany(p => p.Peladas).OnDelete(DeleteBehavior.Restrict).HasForeignKey(p => p.CreatedByUserId).HasConstraintName("ForeignKey_Pelada_UserId");
+            });
+        }
+
+        private static void ConfigurePeladaUser(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<PeladaUser>(b =>
+            {
+                b.ToTable("peladaUser");
+                b.HasKey(p => p.Id);
+                b.HasKey(p => new { p.PeladaId, p.UserId });
+                b.Property(p => p.Id).HasColumnName("id");
+                b.Property(p => p.PeladaId).IsRequired().HasColumnName("peladaId");
+                b.Property(p => p.UserId).IsRequired().HasColumnName("userId");
+                b.Property(p => p.CreatedAt).IsRequired().HasColumnName("createdAt");
+                b.HasOne(p => p.User).WithMany(p => p.PeladaUsers).HasForeignKey(p => p.UserId).HasConstraintName("ForeignKey_PeladaUser_UserId");
+                b.HasOne(p => p.Pelada).WithMany(p => p.PeladaUsers).HasForeignKey(p => p.PeladaId).HasConstraintName("ForeignKey_PeladaUser_PeladaId");
+            });
+        }
+
         public override int SaveChanges()
         {
             var modifiedEntries = ChangeTracker.Entries<BaseEntity>().Where(e => e.State == EntityState.Added || e.State == EntityState.Modified);
@@ -76,12 +110,12 @@ namespace api.Context
                 {
                     entry.Entity.CreatedAt = DateTime.Now;
 
-                    var createdByUserId = entry.Entity.GetType().GetRuntimeProperties().FirstOrDefault(w => w.Name.Equals("CreatedByUserId"));
-                    if (createdByUserId != null && _context.HttpContext != null)
-                    {
-                        var userId = Convert.ToInt32(_context.HttpContext.User.Claims.First(w => w.Type.Equals("id")).Value);
-                        createdByUserId.SetValue(entry.Entity, userId);
-                    }
+                    //var createdByUserId = entry.Entity.GetType().GetRuntimeProperties().FirstOrDefault(w => w.Name.Equals("CreatedByUserId"));
+                    //if (createdByUserId != null && _context.HttpContext != null)
+                    //{
+                    //    var userId = Convert.ToInt32(_context.HttpContext.User.Claims.First(w => w.Type.Equals("id")).Value);
+                    //    createdByUserId.SetValue(entry.Entity, userId);
+                    //}
                 }
             }
 

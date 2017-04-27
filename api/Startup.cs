@@ -15,7 +15,7 @@ using MySQL.Data.Entity.Extensions;
 
 namespace api
 {
-    public class Startup
+    public partial class Startup
     {
         public Startup(IHostingEnvironment env)
         {
@@ -31,11 +31,12 @@ namespace api
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+        {            
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IArenaRepository, ArenaRepository>();
+            services.AddScoped<IPeladaRepository, PeladaRepository>();
 
+            services.AddScoped<ILoginService, LoginService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IArenaService, ArenaService>();
 
@@ -45,6 +46,7 @@ namespace api
             // Add framework services.
             services.AddMvc();
             services.AddSingleton(Configuration);
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.Configure<MvcOptions>(options => options.Filters.Add(new ProducesAttribute("application/json")));
         }
 
@@ -53,6 +55,8 @@ namespace api
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            ConfigureAuth(app);
 
             app.UseMvc();
 

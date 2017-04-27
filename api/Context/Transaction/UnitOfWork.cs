@@ -1,5 +1,6 @@
 ﻿using api.Context.Repository;
 using Microsoft.EntityFrameworkCore.Storage;
+using System;
 
 namespace api.Context.Transaction
 {
@@ -8,17 +9,21 @@ namespace api.Context.Transaction
         protected CdpContext context;
         readonly IDbContextTransaction transaction;
 
+        UserRepository userRepository;
+        ArenaRepository arenaRepository;
+        PeladaRepository peladaRepository;
+        PeladaUserRepository peladaUserRepository;
+
         public UnitOfWork(CdpContext _context)
         {
             context = _context;
             transaction = context.Database.BeginTransaction();
         }
 
-        UserRepository userRepository;
         public UserRepository UserRepository => userRepository ?? (userRepository = new UserRepository(context));
-
-        ArenaRepository arenaRepository;
         public ArenaRepository ArenaRepository => arenaRepository ?? (arenaRepository = new ArenaRepository(context));
+        public PeladaRepository PeladaRepository => peladaRepository ?? (peladaRepository = new PeladaRepository(context));
+        public PeladaUserRepository PeladaUserRepository => peladaUserRepository ?? (peladaUserRepository = new PeladaUserRepository(context));
 
         public void Save()
         {
@@ -34,6 +39,12 @@ namespace api.Context.Transaction
         public void Rollback()
         {
             transaction.Rollback();
+        }
+
+        public void Dispose()
+        {
+            this.Dispose();
+            GC.SuppressFinalize(this);
         }
     }
 }

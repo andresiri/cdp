@@ -16,7 +16,6 @@ namespace api.Services
         {
             try
             {
-
                 obj.Validate();
 
                 var existentUser = _unitOfWork.UserRepository.GetByEmailAddress(obj.Email);

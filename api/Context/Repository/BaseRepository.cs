@@ -7,8 +7,8 @@ namespace api.Context.Repository
 {
     public class BaseRepository<T> : IBaseRepository<T> where T: class
     {
-        protected CdpContext _context;
-        protected DbSet<T> DbSet;
+        internal CdpContext _context;
+        internal DbSet<T> DbSet;
 
         public BaseRepository(CdpContext context)
         {
@@ -21,9 +21,9 @@ namespace api.Context.Repository
             return _context.Set<T>().ToList();
         }
 
-        public T Create(T obj)
+        public virtual T Create(T obj)
         {
-            _context.Set<T>().Add(obj);
+            DbSet.Add(obj);
             return obj;
         }
     }

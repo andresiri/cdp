@@ -19,6 +19,9 @@ namespace domain.Entities
         public byte? Number { get; set; }
         public Position? Position { get; set; }
 
+        public List<PeladaUser> PeladaUsers { get; set; }
+        public List<Pelada> Peladas { get; set; }
+
         public override IList<ValidationFailure> GetModelErrors()
         {
             var validator = new UserValidation();

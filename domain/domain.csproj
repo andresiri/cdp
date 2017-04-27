@@ -6,4 +6,7 @@
     <PackageReference Include="FluentValidation" Version="6.4.1">
     </PackageReference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Entities\Model\" />
+  </ItemGroup>
 </Project>
