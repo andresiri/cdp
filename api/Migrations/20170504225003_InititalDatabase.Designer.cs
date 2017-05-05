@@ -8,8 +8,8 @@ using api.Context;
 namespace api.Migrations
 {
     [DbContext(typeof(CdpContext))]
-    [Migration("20170426225627_AddInitialDatabase")]
-    partial class AddInitialDatabase
+    [Migration("20170504225003_InititalDatabase")]
+    partial class InititalDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -73,21 +73,22 @@ namespace api.Migrations
 
             modelBuilder.Entity("domain.Entities.PeladaUser", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("id");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnName("createdAt");
+
                     b.Property<int>("PeladaId")
                         .HasColumnName("peladaId");
 
                     b.Property<int>("UserId")
                         .HasColumnName("userId");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnName("createdAt");
+                    b.HasKey("Id");
 
-                    b.Property<int>("Id")
-                        .HasColumnName("id");
-
-                    b.HasKey("PeladaId", "UserId");
-
-                    b.HasAlternateKey("Id");
+                    b.HasIndex("PeladaId");
 
                     b.HasIndex("UserId");
 
@@ -129,7 +130,7 @@ namespace api.Migrations
                         .HasColumnName("password")
                         .HasMaxLength(100);
 
-                    b.Property<int?>("Position")
+                    b.Property<string>("Position")
                         .HasColumnName("position")
                         .HasMaxLength(100);
 

@@ -6,6 +6,7 @@
     <Folder Include="Migrations" />
     <Folder Include="wwwroot\" />
     <Folder Include="Authentication\" />
+    <Folder Include="Authorization\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.1" />
@@ -35,5 +36,6 @@
     <Compile Remove="Migrations\20170426002525_AddArenaTable.Designer.cs" />
     <Compile Remove="Migrations\20170426002525_AddArenaTable.cs" />
     <Compile Remove="Migrations\CdpContextModelSnapshot.cs" />
+    <Compile Remove="Authorization\PeladaAuthorization.cs" />
   </ItemGroup>
 </Project>

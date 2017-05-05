@@ -1,4 +1,5 @@
 ﻿using System;
+using CartolaDaPelada.Controllers;
 using domain.Entities;
 using domain.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +8,7 @@ namespace api.Controllers
 {
     [Produces("application/json")]
     [Route("api/[controller]")]
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         readonly IUserService _userService;
 

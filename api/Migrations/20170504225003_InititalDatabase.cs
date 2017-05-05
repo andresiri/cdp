@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace api.Migrations
 {
-    public partial class AddInitialDatabase : Migration
+    public partial class InititalDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -38,7 +38,7 @@ namespace api.Migrations
                     nickname = table.Column<string>(maxLength: 100, nullable: true),
                     number = table.Column<byte>(nullable: true),
                     password = table.Column<string>(maxLength: 100, nullable: false),
-                    position = table.Column<int>(maxLength: 100, nullable: true)
+                    position = table.Column<string>(maxLength: 100, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -70,15 +70,15 @@ namespace api.Migrations
                 name: "peladaUser",
                 columns: table => new
                 {
-                    peladaId = table.Column<int>(nullable: false),
-                    userId = table.Column<int>(nullable: false),
-                    createdAt = table.Column<DateTime>(nullable: false),
                     id = table.Column<int>(nullable: false)
+                        .Annotation("MySQL:AutoIncrement", true),
+                    createdAt = table.Column<DateTime>(nullable: false),
+                    peladaId = table.Column<int>(nullable: false),
+                    userId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_peladaUser", x => new { x.peladaId, x.userId });
-                    table.UniqueConstraint("AK_peladaUser_id", x => x.id);
+                    table.PrimaryKey("PK_peladaUser", x => x.id);
                     table.ForeignKey(
                         name: "ForeignKey_PeladaUser_PeladaId",
                         column: x => x.peladaId,
@@ -97,6 +97,11 @@ namespace api.Migrations
                 name: "IX_pelada_createdByUserId",
                 table: "pelada",
                 column: "createdByUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_peladaUser_peladaId",
+                table: "peladaUser",
+                column: "peladaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_peladaUser_userId",

@@ -4,6 +4,8 @@ using domain.Lib;
 using Microsoft.EntityFrameworkCore;
 using api.Context.Repository;
 using api.Context.Transaction;
+using System.Collections.Generic;
+using domain.Entities.Enum;
 
 namespace api.Context
 {
@@ -28,24 +30,23 @@ namespace api.Context
 
                 context.Database.ExecuteSqlCommand("DELETE FROM user");
                 context.Database.ExecuteSqlCommand("ALTER TABLE user AUTO_INCREMENT = 1");
+
+                context.SaveChanges();
             }
 
             var unitOfWork = new UnitOfWork(context);
 
-            InsertUsers(unitOfWork);
+            var users = InsertUsers(unitOfWork);
+            var peladas = InsertPeladas(unitOfWork, users);
+
             InsertArenas(unitOfWork);
-            //InsertPeladas(unitOfWork);
+            InsertPeladaUsers(unitOfWork, users, peladas);
 
-            unitOfWork.Save();
-
-
-            //InsertPeladaUsers(context);
-
-            //context.SaveChanges();
+            unitOfWork.Save();           
         }
 
-        public static void InsertUsers(UnitOfWork unitOfWork)
-        {            
+        public static List<User> InsertUsers(UnitOfWork unitOfWork)
+        {
             var users = new User[]
             {
                 new User
@@ -55,7 +56,7 @@ namespace api.Context
                     LastName = "Miranda",
                     Number = 8,
                     Password = Password.Hash("andre", "andremirannda@gmail.com"),
-                    Position = Position.MeioCampo
+                    Position = PositionEnum.MeioCampo
                 },
                 new User
                 {
@@ -64,14 +65,18 @@ namespace api.Context
                     LastName = "Feliciano",
                     Number = 7,
                     Password = Password.Hash("helio", "heliofeliciano@gmail.com"),
-                    Position = Position.Atacante
+                    Position = PositionEnum.Atacante
                 }
             };
 
+            var newUsers = new List<User>();
+
             foreach (var user in users)
             {
-                unitOfWork.UserRepository.Create(user);
+                newUsers.Add(unitOfWork.UserRepository.Create(user));
             }
+
+            return newUsers;
         }
 
         public static void InsertArenas(UnitOfWork unitOfWork) 
@@ -90,41 +95,38 @@ namespace api.Context
             var xico = unitOfWork.ArenaRepository.GetAll();
         }
 
-        public static void InsertPeladas(UnitOfWork unitOfWork)
+        public static List<Pelada> InsertPeladas(UnitOfWork unitOfWork, List<User> users)
         {            
             var peladas = new Pelada[]
             {
-                new Pelada {Name = "Pelada 1", CreatedByUserId = 1},
-                new Pelada {Name = "Pelada 2", CreatedByUserId = 2},
-                new Pelada {Name = "Pelada 3", CreatedByUserId = 1}
+                new Pelada {Name = "Pelada grotesca", CreatedByUserId = users[0].Id},
+                new Pelada {Name = "Pelada da Massa", CreatedByUserId = users[0].Id},
+                new Pelada {Name = "Pelada do floresta encantada", CreatedByUserId = users[1].Id}
             };
+
+            var newPeladas = new List<Pelada>();
 
             foreach (var pelada in peladas)
             {
-                unitOfWork.PeladaRepository.Create(pelada);
+                newPeladas.Add(unitOfWork.PeladaRepository.Create(pelada));
             }
+
+            return newPeladas;
         }
 
-        public static void InsertPeladaUsers(CdpContext context)
-        {
-            if (context.PeladaUser.Any())
-            {
-                return;
-            }
-
-            context.SaveChanges();
-
+        public static void InsertPeladaUsers(UnitOfWork unitOfWork, List<User> users, List<Pelada> peladas)
+        {            
             var peladaUsers = new PeladaUser[]
             {
-                new PeladaUser {UserId = 1, PeladaId = 1},
-                new PeladaUser {UserId = 2, PeladaId = 1},
-                new PeladaUser {UserId = 1, PeladaId = 2},
-                new PeladaUser {UserId = 2, PeladaId = 2},
+                new PeladaUser {UserId = users[0].Id, PeladaId = peladas[0].Id},
+                new PeladaUser {UserId = users[1].Id, PeladaId = peladas[0].Id},
+                new PeladaUser {UserId = users[0].Id, PeladaId = peladas[1].Id},
+                new PeladaUser {UserId = users[1].Id, PeladaId = peladas[1].Id},
             };
 
             foreach (var peladaUser in peladaUsers)
             {
-                context.PeladaUser.Add(peladaUser);
+                unitOfWork.PeladaUserRepository.Create(peladaUser);
             }
         }
     }

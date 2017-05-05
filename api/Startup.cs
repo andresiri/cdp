@@ -12,6 +12,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using MySQL.Data.Entity.Extensions;
+using api.Authorization;
+using Microsoft.AspNetCore.Authorization;
 
 namespace api
 {
@@ -32,6 +34,8 @@ namespace api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {            
+            services.AddSingleton<IUnitOfWork, UnitOfWork>();
+
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IArenaRepository, ArenaRepository>();
             services.AddScoped<IPeladaRepository, PeladaRepository>();
@@ -39,14 +43,23 @@ namespace api
             services.AddScoped<ILoginService, LoginService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IArenaService, ArenaService>();
+            services.AddScoped<IPeladaService, PeladaService>();
+            services.AddScoped<IPeladaUserService, PeladaUserService>();
 
             services.AddDbContext<CdpContext>(options => options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             // Add framework services.
             services.AddMvc();
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<IAuthorizationHandler, NeedsPeladaAccess>();
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("NeedsPeladaAccess", policy => policy.Requirements.Add(new NeedsPeladaAccessRequirement()));
+            });
+
             services.AddSingleton(Configuration);
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.Configure<MvcOptions>(options => options.Filters.Add(new ProducesAttribute("application/json")));
         }
 

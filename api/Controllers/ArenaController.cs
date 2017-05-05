@@ -2,12 +2,15 @@
 using Microsoft.AspNetCore.Mvc;
 using domain.Services;
 using domain.Entities;
+using Microsoft.AspNetCore.Authorization;
+using CartolaDaPelada.Controllers;
 
 namespace api.Controllers
 {
     [Produces("application/json")]
     [Route("api/[controller]")]
-    public class ArenaController : Controller
+    //[Authorize]
+    public class ArenaController : BaseController
     {
         readonly IArenaService _arenaService;
 

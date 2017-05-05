@@ -90,7 +90,6 @@ namespace api.Context
             {
                 b.ToTable("peladaUser");
                 b.HasKey(p => p.Id);
-                b.HasKey(p => new { p.PeladaId, p.UserId });
                 b.Property(p => p.Id).HasColumnName("id");
                 b.Property(p => p.PeladaId).IsRequired().HasColumnName("peladaId");
                 b.Property(p => p.UserId).IsRequired().HasColumnName("userId");
@@ -110,12 +109,12 @@ namespace api.Context
                 {
                     entry.Entity.CreatedAt = DateTime.Now;
 
-                    //var createdByUserId = entry.Entity.GetType().GetRuntimeProperties().FirstOrDefault(w => w.Name.Equals("CreatedByUserId"));
-                    //if (createdByUserId != null && _context.HttpContext != null)
-                    //{
-                    //    var userId = Convert.ToInt32(_context.HttpContext.User.Claims.First(w => w.Type.Equals("id")).Value);
-                    //    createdByUserId.SetValue(entry.Entity, userId);
-                    //}
+                    var createdByUserId = entry.Entity.GetType().GetRuntimeProperties().FirstOrDefault(w => w.Name.Equals("CreatedByUserId"));
+                    if (createdByUserId != null && _context.HttpContext != null)
+                    {
+                        var userId = Convert.ToInt32(_context.HttpContext.User.Claims.First(w => w.Type.Equals("id")).Value);
+                        createdByUserId.SetValue(entry.Entity, userId);
+                    }
                 }
             }
 
