@@ -4,36 +4,56 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
+using domain.Services;
 
 namespace api.Authorization
 {
     public class NeedsPeladaAccess : AuthorizationHandler<NeedsPeladaAccessRequirement>
     {
-        readonly IHttpContextAccessor contextAccessor;
+        readonly IHttpContextAccessor _contextAccessor;
+        readonly IPeladaUserService _peladaUserService;
 
-        public NeedsPeladaAccess(IHttpContextAccessor contextAccessor)
+        public NeedsPeladaAccess(IHttpContextAccessor contextAccessor, IPeladaUserService peladaUserService)
         {
-            this.contextAccessor = contextAccessor;
+            _contextAccessor = contextAccessor;
+            _peladaUserService = peladaUserService;
         }
 
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, NeedsPeladaAccessRequirement requirement)
         {
-            var httpContext = contextAccessor.HttpContext;
-            var path = httpContext.Request.Path;
-
-            //var pathPart = path.Split('/');
-
-            if (!context.User.HasClaim(c => c.Type.Equals("id")))
+            if (!context.User.HasClaim(c => c.Type.Equals("userId")))
             {
                 return Task.CompletedTask;
             }
 
+            var httpContext = _contextAccessor.HttpContext;
+            var pathSplit = httpContext.Request.Path.Value.Split('/');
 
-            var userId = context.User.Claims.First(w => w.Type.Equals("id"));
+            var indexOfPelada = Array.IndexOf(pathSplit, "pelada");
+
+            if (indexOfPelada > -1) {
+
+                var userId = Convert.ToInt32(context.User.Claims.First(c => c.Type.Equals("userId")).Value);
+                var peladaId = Convert.ToInt32(pathSplit[indexOfPelada + 1]);
+
+                var peladasUser = _peladaUserService.GetPeladasByUser(userId);
+
+                var hasAccessToPelada = peladasUser.Any(w => w.PeladaId.Equals(peladaId));
+
+                if (!hasAccessToPelada)
+                {
+
+                    return Task.CompletedTask;
+                }
+
+                context.Succeed(requirement);
+            }
+            else {
+
+                context.Succeed(requirement);
+            }
 
             return Task.CompletedTask;
-
-            throw new NotImplementedException();
         }
     }
 }

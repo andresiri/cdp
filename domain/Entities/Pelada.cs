@@ -9,7 +9,7 @@ namespace domain.Entities
         public string Name { get; set; }
         public int CreatedByUserId { get; set; }
 
-        public virtual User CreatedByUser { get; set; }
+        public User CreatedByUser { get; set; }
         public List<PeladaUser> PeladaUsers { get; set; }
 
         public override IList<ValidationFailure> GetModelErrors()

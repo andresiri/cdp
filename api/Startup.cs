@@ -1,9 +1,11 @@
-﻿using api.Context;
+﻿using api.Authorization;
+using api.Context;
 using api.Context.Repository;
 using api.Context.Transaction;
 using api.Services;
 using domain.Repositories;
 using domain.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -11,9 +13,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
 using MySQL.Data.Entity.Extensions;
-using api.Authorization;
-using Microsoft.AspNetCore.Authorization;
 
 namespace api
 {
@@ -34,7 +35,11 @@ namespace api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {            
+            services.AddDbContext<CdpContext>(options => options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddSingleton<IUnitOfWork, UnitOfWork>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<IAuthorizationHandler, NeedsPeladaAccess>();
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IArenaRepository, ArenaRepository>();
@@ -46,13 +51,12 @@ namespace api
             services.AddScoped<IPeladaService, PeladaService>();
             services.AddScoped<IPeladaUserService, PeladaUserService>();
 
-            services.AddDbContext<CdpContext>(options => options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
-
             // Add framework services.
-            services.AddMvc();
-
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddSingleton<IAuthorizationHandler, NeedsPeladaAccess>();
+            var mvc = services.AddMvc();
+            mvc.AddJsonOptions(opt =>
+            {
+                opt.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
+            });
 
             services.AddAuthorization(options =>
             {

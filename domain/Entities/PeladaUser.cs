@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using FluentValidation.Results;
+using domain.Entities.Validations;
 
 namespace domain.Entities
 {
@@ -14,7 +15,10 @@ namespace domain.Entities
 
         public override IList<ValidationFailure> GetModelErrors()
         {
-            return new ValidationFailure[]{};
+            var validator = new PeladaUserValidation();
+            var results = validator.Validate(this);
+
+            return results.Errors;
         }
     }
 }

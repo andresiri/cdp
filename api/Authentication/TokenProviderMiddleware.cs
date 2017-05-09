@@ -72,7 +72,7 @@ namespace api.Authentication
             // You can add other claims here, if you want:
             var claims = new Claim[]
             {
-                new Claim("id", user.Id.ToString()),
+                new Claim("userId", user.Id.ToString()),
                 new Claim("email", email)
             };
 

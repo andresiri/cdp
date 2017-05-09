@@ -1,11 +1,9 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using api.Context.Transaction;
 using domain.Entities;
+using domain.Entities.Enum;
 using domain.Lib;
 using Microsoft.EntityFrameworkCore;
-using api.Context.Repository;
-using api.Context.Transaction;
-using System.Collections.Generic;
-using domain.Entities.Enum;
 
 namespace api.Context
 {

@@ -1,9 +1,7 @@
 ﻿using System;
-using api.Authorization;
 using CartolaDaPelada.Controllers;
 using domain.Entities;
 using domain.Services;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
@@ -37,14 +35,13 @@ namespace api.Controllers
         }
 
         [HttpPost]
-        //[Authorize(Policy = "NeedsPeladaAccess")]
         [Route("{peladaId}/add-user")]
         public JsonResult AddUserToPelada([FromRoute]int peladaId, [FromBody]PeladaUser obj)
         {
             try
             {
-                var newPeladaUser = "xico";
-                //var newPeladaUser = _peladaUserService.AddUserToPelada(obj);
+                obj.PeladaId = peladaId;
+                var newPeladaUser = _peladaUserService.Create(obj);
                 return Json(newPeladaUser);
             }
             catch (Exception ex)

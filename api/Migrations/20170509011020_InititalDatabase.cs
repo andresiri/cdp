@@ -13,7 +13,7 @@ namespace api.Migrations
                 columns: table => new
                 {
                     id = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:AutoIncrement", true),
+                        .Annotation("MySql:ValueGeneratedOnAdd", true),
                     createdAt = table.Column<DateTime>(nullable: false),
                     description = table.Column<string>(maxLength: 100, nullable: false),
                     latitude = table.Column<string>(maxLength: 30, nullable: true),
@@ -30,7 +30,7 @@ namespace api.Migrations
                 columns: table => new
                 {
                     id = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:AutoIncrement", true),
+                        .Annotation("MySql:ValueGeneratedOnAdd", true),
                     createdAt = table.Column<DateTime>(nullable: false),
                     email = table.Column<string>(maxLength: 100, nullable: false),
                     firstName = table.Column<string>(maxLength: 100, nullable: false),
@@ -38,7 +38,7 @@ namespace api.Migrations
                     nickname = table.Column<string>(maxLength: 100, nullable: true),
                     number = table.Column<byte>(nullable: true),
                     password = table.Column<string>(maxLength: 100, nullable: false),
-                    position = table.Column<string>(maxLength: 100, nullable: true)
+                    position = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -50,7 +50,7 @@ namespace api.Migrations
                 columns: table => new
                 {
                     id = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:AutoIncrement", true),
+                        .Annotation("MySql:ValueGeneratedOnAdd", true),
                     createdAt = table.Column<DateTime>(nullable: false),
                     createdByUserId = table.Column<int>(nullable: false),
                     name = table.Column<string>(maxLength: 50, nullable: true)
@@ -71,7 +71,7 @@ namespace api.Migrations
                 columns: table => new
                 {
                     id = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:AutoIncrement", true),
+                        .Annotation("MySql:ValueGeneratedOnAdd", true),
                     createdAt = table.Column<DateTime>(nullable: false),
                     peladaId = table.Column<int>(nullable: false),
                     userId = table.Column<int>(nullable: false)

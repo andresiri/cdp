@@ -2,7 +2,6 @@
 using api.Context.Transaction;
 using domain.Entities;
 using domain.Services;
-using Remotion.Linq.Parsing;
 
 namespace api.Services
 {

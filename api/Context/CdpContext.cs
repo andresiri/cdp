@@ -11,10 +11,10 @@ namespace api.Context
 {
     public class CdpContext : DbContext
     {
-        private readonly IHttpContextAccessor _context;
-        public CdpContext(DbContextOptions options, IHttpContextAccessor context) : base(options)
+        private readonly IHttpContextAccessor _httpContext;
+        public CdpContext(DbContextOptions options, IHttpContextAccessor httpContext) : base(options)
         {
-            _context = context;
+            _httpContext = httpContext;
         }
 
         public DbSet<User> User { get; set; }
@@ -50,7 +50,7 @@ namespace api.Context
                 b.Property(u => u.Password).IsRequired().HasMaxLength(100).HasColumnName("password");
                 b.Property(u => u.Nickname).HasMaxLength(100).HasColumnName("nickname");
                 b.Property(u => u.Number).HasColumnName("number");
-                b.Property(u => u.Position).HasMaxLength(100).HasColumnName("position");
+                b.Property(u => u.Position).HasColumnName("position");
                 b.Property(u => u.CreatedAt).IsRequired().HasColumnName("createdAt");
             });
         }
@@ -110,9 +110,9 @@ namespace api.Context
                     entry.Entity.CreatedAt = DateTime.Now;
 
                     var createdByUserId = entry.Entity.GetType().GetRuntimeProperties().FirstOrDefault(w => w.Name.Equals("CreatedByUserId"));
-                    if (createdByUserId != null && _context.HttpContext != null)
+                    if (createdByUserId != null && _httpContext.HttpContext != null)
                     {
-                        var userId = Convert.ToInt32(_context.HttpContext.User.Claims.First(w => w.Type.Equals("id")).Value);
+                        var userId = Convert.ToInt32(_httpContext.HttpContext.User.Claims.First(w => w.Type.Equals("userId")).Value);
                         createdByUserId.SetValue(entry.Entity, userId);
                     }
                 }

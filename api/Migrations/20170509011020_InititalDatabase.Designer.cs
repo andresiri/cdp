@@ -8,7 +8,7 @@ using api.Context;
 namespace api.Migrations
 {
     [DbContext(typeof(CdpContext))]
-    [Migration("20170504225003_InititalDatabase")]
+    [Migration("20170509011020_InititalDatabase")]
     partial class InititalDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -131,8 +131,7 @@ namespace api.Migrations
                         .HasMaxLength(100);
 
                     b.Property<string>("Position")
-                        .HasColumnName("position")
-                        .HasMaxLength(100);
+                        .HasColumnName("position");
 
                     b.HasKey("Id");
 

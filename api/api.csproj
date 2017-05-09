@@ -18,9 +18,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="1.1.1">
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.1" />
-    <PackageReference Include="SapientGuardian.EntityFrameworkCore.MySql" Version="7.1.23">
-    </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="1.1.1" />
+    <PackageReference Include="SapientGuardian.EntityFrameworkCore.MySql" Version="7.1.23" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />

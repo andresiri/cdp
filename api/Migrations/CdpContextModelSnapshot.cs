@@ -130,8 +130,7 @@ namespace api.Migrations
                         .HasMaxLength(100);
 
                     b.Property<string>("Position")
-                        .HasColumnName("position")
-                        .HasMaxLength(100);
+                        .HasColumnName("position");
 
                     b.HasKey("Id");
 
