@@ -7,7 +7,7 @@ namespace api.Context.Transaction
     public class UnitOfWork : IUnitOfWork
     {
         protected CdpContext context;
-        readonly IDbContextTransaction transaction;
+        //readonly IDbContextTransaction transaction;
 
         UserRepository userRepository;
         ArenaRepository arenaRepository;
@@ -17,7 +17,7 @@ namespace api.Context.Transaction
         public UnitOfWork(CdpContext _context)
         {
             context = _context;
-            transaction = context.Database.BeginTransaction();
+            //transaction = context.Database.BeginTransaction();
         }
 
         public UserRepository UserRepository => userRepository ?? (userRepository = new UserRepository(context));
@@ -27,18 +27,13 @@ namespace api.Context.Transaction
 
         public void Save()
         {
-            Commit();
+            //transaction.Commit();
             context.SaveChanges();
-        }
-
-        public void Commit()
-        {
-            transaction.Commit();
         }
 
         public void Rollback()
         {
-            transaction.Rollback();
+            //transaction.Rollback();
         }
 
         public void Dispose()

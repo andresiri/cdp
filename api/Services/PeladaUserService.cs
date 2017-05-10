@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using api.Context.Transaction;
 using domain.Entities;
 using domain.Services;
+using domain.Repositories;
 
 namespace api.Services
 {
@@ -20,9 +21,6 @@ namespace api.Services
 
                 var newPeladaUser = _unitOfWork.PeladaUserRepository.Create(obj);
                 _unitOfWork.Save();
-
-                newPeladaUser.Pelada = null;
-                newPeladaUser.User = null;
 
                 return newPeladaUser;
             }

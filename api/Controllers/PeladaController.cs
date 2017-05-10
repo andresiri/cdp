@@ -42,7 +42,7 @@ namespace api.Controllers
             {
                 obj.PeladaId = peladaId;
                 var newPeladaUser = _peladaUserService.Create(obj);
-                return Json(newPeladaUser);
+                return Json("xico");
             }
             catch (Exception ex)
             {

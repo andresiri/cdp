@@ -6,7 +6,6 @@ namespace api.Context.Transaction
     public interface IUnitOfWork : IDisposable
     {
         void Save();
-        void Commit();
         void Rollback();
 
         UserRepository UserRepository { get; }

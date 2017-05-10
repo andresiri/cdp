@@ -15,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using MySQL.Data.Entity.Extensions;
+using domain.Entities;
 
 namespace api
 {
@@ -34,16 +35,18 @@ namespace api
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {            
+        {
             services.AddDbContext<CdpContext>(options => options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
-
             services.AddSingleton<IUnitOfWork, UnitOfWork>();
+
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IAuthorizationHandler, NeedsPeladaAccess>();
 
+            services.AddScoped<IBaseRepository<BaseEntity>, BaseRepository<BaseEntity>>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IArenaRepository, ArenaRepository>();
             services.AddScoped<IPeladaRepository, PeladaRepository>();
+            services.AddScoped<IPeladaUserRepository, PeladaUserRepository>();
 
             services.AddScoped<ILoginService, LoginService>();
             services.AddScoped<IUserService, UserService>();
@@ -55,6 +58,7 @@ namespace api
             var mvc = services.AddMvc();
             mvc.AddJsonOptions(opt =>
             {
+                opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
                 opt.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
             });
 
