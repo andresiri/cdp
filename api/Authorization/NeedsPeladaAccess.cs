@@ -42,7 +42,6 @@ namespace api.Authorization
 
                 if (!hasAccessToPelada)
                 {
-
                     return Task.CompletedTask;
                 }
 

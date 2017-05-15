@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using domain.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -18,13 +20,13 @@ namespace api.Context.Repository
 
         public IEnumerable<T> GetAll()
         {
-            return _context.Set<T>().ToList();
+            return DbSet.ToList();
         }
 
         public virtual T Create(T obj)
-        {
+        {                     
             DbSet.Add(obj);
-            return obj;
+            return obj;         
         }
     }
 }

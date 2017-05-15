@@ -87,7 +87,7 @@ namespace api.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PeladaId");
+                    b.HasAlternateKey("PeladaId", "UserId");
 
                     b.HasIndex("UserId");
 

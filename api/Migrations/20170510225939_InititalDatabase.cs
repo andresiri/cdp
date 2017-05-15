@@ -13,7 +13,7 @@ namespace api.Migrations
                 columns: table => new
                 {
                     id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGeneratedOnAdd", true),
+                        .Annotation("MySQL:AutoIncrement", true),
                     createdAt = table.Column<DateTime>(nullable: false),
                     description = table.Column<string>(maxLength: 100, nullable: false),
                     latitude = table.Column<string>(maxLength: 30, nullable: true),
@@ -30,7 +30,7 @@ namespace api.Migrations
                 columns: table => new
                 {
                     id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGeneratedOnAdd", true),
+                        .Annotation("MySQL:AutoIncrement", true),
                     createdAt = table.Column<DateTime>(nullable: false),
                     email = table.Column<string>(maxLength: 100, nullable: false),
                     firstName = table.Column<string>(maxLength: 100, nullable: false),
@@ -50,7 +50,7 @@ namespace api.Migrations
                 columns: table => new
                 {
                     id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGeneratedOnAdd", true),
+                        .Annotation("MySQL:AutoIncrement", true),
                     createdAt = table.Column<DateTime>(nullable: false),
                     createdByUserId = table.Column<int>(nullable: false),
                     name = table.Column<string>(maxLength: 50, nullable: true)
@@ -71,7 +71,7 @@ namespace api.Migrations
                 columns: table => new
                 {
                     id = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGeneratedOnAdd", true),
+                        .Annotation("MySQL:AutoIncrement", true),
                     createdAt = table.Column<DateTime>(nullable: false),
                     peladaId = table.Column<int>(nullable: false),
                     userId = table.Column<int>(nullable: false)
@@ -79,6 +79,7 @@ namespace api.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_peladaUser", x => x.id);
+                    table.UniqueConstraint("AK_peladaUser_peladaId_userId", x => new { x.peladaId, x.userId });
                     table.ForeignKey(
                         name: "ForeignKey_PeladaUser_PeladaId",
                         column: x => x.peladaId,
@@ -97,11 +98,6 @@ namespace api.Migrations
                 name: "IX_pelada_createdByUserId",
                 table: "pelada",
                 column: "createdByUserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_peladaUser_peladaId",
-                table: "peladaUser",
-                column: "peladaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_peladaUser_userId",

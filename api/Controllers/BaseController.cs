@@ -10,7 +10,7 @@ namespace CartolaDaPelada.Controllers
     {
         public int GetUserId()
         {
-            var userId = Convert.ToInt32(User.Claims.Where(w => w.Type.Equals("userId")).First().Value);
+            var userId = Convert.ToInt32(User.Claims.First(w => w.Type.Equals("userId")).Value);
             return userId;
         }
     }

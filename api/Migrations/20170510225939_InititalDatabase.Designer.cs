@@ -8,7 +8,7 @@ using api.Context;
 namespace api.Migrations
 {
     [DbContext(typeof(CdpContext))]
-    [Migration("20170509011020_InititalDatabase")]
+    [Migration("20170510225939_InititalDatabase")]
     partial class InititalDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -88,7 +88,7 @@ namespace api.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PeladaId");
+                    b.HasAlternateKey("PeladaId", "UserId");
 
                     b.HasIndex("UserId");
 

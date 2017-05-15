@@ -14,8 +14,8 @@ namespace domain.Entities
         public byte? Number { get; set; }
         public string Position { get; set; }
 
-        public List<PeladaUser> PeladaUsers { get; set; }
-        public List<Pelada> Peladas { get; set; }
+        public virtual List<PeladaUser> PeladaUsers { get; set; }
+        public virtual List<Pelada> Peladas { get; set; }
 
         public override IList<ValidationFailure> GetModelErrors()
         {
