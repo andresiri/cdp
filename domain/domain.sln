@@ -1,0 +1,17 @@
+
+Microsoft Visual Studio Solution File, Format Version 15.00
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "domain", "domain.csproj", "{E908D77F-CC30-4B4A-BF05-4847ED72B43F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E908D77F-CC30-4B4A-BF05-4847ED72B43F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E908D77F-CC30-4B4A-BF05-4847ED72B43F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E908D77F-CC30-4B4A-BF05-4847ED72B43F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E908D77F-CC30-4B4A-BF05-4847ED72B43F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

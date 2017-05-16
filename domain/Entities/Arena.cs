@@ -8,7 +8,9 @@ namespace domain.Entities
         public string Description { get; set; }
 		public string Name { get; set; }
 		public string Latitude { get; set; }
-		public string Longitude { get; set; }		
+		public string Longitude { get; set; }	
+
+        public List<Pelada> Peladas { get; set; }
 
         public override IList<ValidationFailure> GetModelErrors()
         {

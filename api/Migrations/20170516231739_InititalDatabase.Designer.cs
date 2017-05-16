@@ -8,7 +8,7 @@ using api.Context;
 namespace api.Migrations
 {
     [DbContext(typeof(CdpContext))]
-    [Migration("20170510225939_InititalDatabase")]
+    [Migration("20170516231739_InititalDatabase")]
     partial class InititalDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,6 +54,9 @@ namespace api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnName("id");
 
+                    b.Property<int?>("ArenaDefaultId")
+                        .HasColumnName("arenaDefaultId");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnName("createdAt");
 
@@ -65,6 +68,8 @@ namespace api.Migrations
                         .HasMaxLength(50);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ArenaDefaultId");
 
                     b.HasIndex("CreatedByUserId");
 
@@ -79,6 +84,11 @@ namespace api.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnName("createdAt");
+
+                    b.Property<bool>("IsMonthly")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("isMonthly")
+                        .HasDefaultValue(false);
 
                     b.Property<int>("PeladaId")
                         .HasColumnName("peladaId");
@@ -100,6 +110,9 @@ namespace api.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("id");
+
+                    b.Property<DateTime?>("Birthday")
+                        .HasColumnName("birthday");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnName("createdAt");
@@ -140,6 +153,11 @@ namespace api.Migrations
 
             modelBuilder.Entity("domain.Entities.Pelada", b =>
                 {
+                    b.HasOne("domain.Entities.Arena", "ArenaDefault")
+                        .WithMany("Peladas")
+                        .HasForeignKey("ArenaDefaultId")
+                        .HasConstraintName("ForeignKey_Pelada_ArenaDefaultId");
+
                     b.HasOne("domain.Entities.User", "CreatedByUser")
                         .WithMany("Peladas")
                         .HasForeignKey("CreatedByUserId")

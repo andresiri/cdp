@@ -31,6 +31,7 @@ namespace api.Migrations
                 {
                     id = table.Column<int>(nullable: false)
                         .Annotation("MySQL:AutoIncrement", true),
+                    birthday = table.Column<DateTime>(nullable: true),
                     createdAt = table.Column<DateTime>(nullable: false),
                     email = table.Column<string>(maxLength: 100, nullable: false),
                     firstName = table.Column<string>(maxLength: 100, nullable: false),
@@ -51,6 +52,7 @@ namespace api.Migrations
                 {
                     id = table.Column<int>(nullable: false)
                         .Annotation("MySQL:AutoIncrement", true),
+                    arenaDefaultId = table.Column<int>(nullable: true),
                     createdAt = table.Column<DateTime>(nullable: false),
                     createdByUserId = table.Column<int>(nullable: false),
                     name = table.Column<string>(maxLength: 50, nullable: true)
@@ -58,6 +60,12 @@ namespace api.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_pelada", x => x.id);
+                    table.ForeignKey(
+                        name: "ForeignKey_Pelada_ArenaDefaultId",
+                        column: x => x.arenaDefaultId,
+                        principalTable: "arena",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "ForeignKey_Pelada_UserId",
                         column: x => x.createdByUserId,
@@ -73,6 +81,7 @@ namespace api.Migrations
                     id = table.Column<int>(nullable: false)
                         .Annotation("MySQL:AutoIncrement", true),
                     createdAt = table.Column<DateTime>(nullable: false),
+                    isMonthly = table.Column<bool>(nullable: false, defaultValue: false),
                     peladaId = table.Column<int>(nullable: false),
                     userId = table.Column<int>(nullable: false)
                 },
@@ -95,6 +104,11 @@ namespace api.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_pelada_arenaDefaultId",
+                table: "pelada",
+                column: "arenaDefaultId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_pelada_createdByUserId",
                 table: "pelada",
                 column: "createdByUserId");
@@ -108,13 +122,13 @@ namespace api.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "arena");
-
-            migrationBuilder.DropTable(
                 name: "peladaUser");
 
             migrationBuilder.DropTable(
                 name: "pelada");
+
+            migrationBuilder.DropTable(
+                name: "arena");
 
             migrationBuilder.DropTable(
                 name: "user");

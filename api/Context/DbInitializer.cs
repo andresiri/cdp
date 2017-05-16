@@ -117,9 +117,9 @@ namespace api.Context
             var peladaUsers = new PeladaUser[]
             {
                 new PeladaUser {UserId = users[0].Id, PeladaId = peladas[0].Id},
-                //new PeladaUser {UserId = users[1].Id, PeladaId = peladas[0].Id}
-                new PeladaUser {UserId = users[0].Id, PeladaId = peladas[1].Id}
-                //new PeladaUser {UserId = users[1].Id, PeladaId = peladas[1].Id},
+                new PeladaUser {UserId = users[1].Id, PeladaId = peladas[0].Id},
+                new PeladaUser {UserId = users[0].Id, PeladaId = peladas[1].Id},
+                new PeladaUser {UserId = users[1].Id, PeladaId = peladas[1].Id}
             };
 
             foreach (var peladaUser in peladaUsers)

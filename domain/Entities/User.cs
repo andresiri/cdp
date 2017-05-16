@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using domain.Entities.Validations;
 using FluentValidation.Results;
+using System;
 
 namespace domain.Entities
 {
@@ -11,6 +12,7 @@ namespace domain.Entities
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Nickname { get; set; }
+        public DateTime? Birthday { get; set; }
         public byte? Number { get; set; }
         public string Position { get; set; }
 

@@ -51,6 +51,7 @@ namespace api.Context
                 b.Property(u => u.Nickname).HasMaxLength(100).HasColumnName("nickname");
                 b.Property(u => u.Number).HasColumnName("number");
                 b.Property(u => u.Position).HasColumnName("position");
+                b.Property(u => u.Birthday).HasColumnName("birthday");
                 b.Property(u => u.CreatedAt).IsRequired().HasColumnName("createdAt");
             });
         }
@@ -78,8 +79,10 @@ namespace api.Context
                 b.HasKey(p => p.Id);
                 b.Property(p => p.Id).HasColumnName("id");
                 b.Property(p => p.Name).HasColumnName("name").HasMaxLength(50);
+                b.Property(p => p.ArenaDefaultId).HasColumnName("arenaDefaultId");
                 b.Property(p => p.CreatedByUserId).HasColumnName("createdByUserId");
                 b.Property(p => p.CreatedAt).IsRequired().HasColumnName("createdAt");
+                b.HasOne(p => p.ArenaDefault).WithMany(p => p.Peladas).OnDelete(DeleteBehavior.Restrict).HasForeignKey(p => p.ArenaDefaultId).HasConstraintName("ForeignKey_Pelada_ArenaDefaultId");
                 b.HasOne(p => p.CreatedByUser).WithMany(p => p.Peladas).OnDelete(DeleteBehavior.Restrict).HasForeignKey(p => p.CreatedByUserId).HasConstraintName("ForeignKey_Pelada_UserId");
             });
         }
@@ -94,6 +97,7 @@ namespace api.Context
                 b.Property(p => p.PeladaId).IsRequired().HasColumnName("peladaId");
                 b.Property(p => p.UserId).IsRequired().HasColumnName("userId");
                 b.Property(p => p.CreatedAt).IsRequired().HasColumnName("createdAt");
+                b.Property(p => p.IsMonthly).IsRequired().HasDefaultValue(false).HasColumnName("isMonthly");
                 b.HasAlternateKey(a => new { a.PeladaId, a.UserId });
                 b.HasOne(p => p.User).WithMany(p => p.PeladaUsers).HasForeignKey(p => p.UserId).HasConstraintName("ForeignKey_PeladaUser_UserId");
                 b.HasOne(p => p.Pelada).WithMany(p => p.PeladaUsers).HasForeignKey(p => p.PeladaId).HasConstraintName("ForeignKey_PeladaUser_PeladaId");
