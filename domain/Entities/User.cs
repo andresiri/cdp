@@ -16,6 +16,7 @@ namespace domain.Entities
         public byte? Number { get; set; }
         public string Position { get; set; }
 
+        public virtual List<PeladaEventUser> PeladaEventUsers { get; set; }
         public virtual List<PeladaUser> PeladaUsers { get; set; }
         public virtual List<Pelada> Peladas { get; set; }
 

@@ -64,6 +64,25 @@ namespace api.Context
                     Number = 7,
                     Password = Password.Hash("helio", "heliofeliciano@gmail.com"),
                     Position = PositionEnum.Atacante
+                },
+                new User
+                {
+                    Email = "lessa@gmail.com",
+                    FirstName = "Mauricio",
+                    LastName = "Lessa",
+                    Number = 5,
+                    Password = Password.Hash("lessa", "lessa@gmail.com"),
+                    Position = PositionEnum.MeioCampo
+                },
+                new User
+                {
+                    Email = "duble@gmail.com",
+                    FirstName = "Filipe",
+                    LastName = "Egito",
+                    Nickname = "Dublê",
+                    Number = 1,
+                    Password = Password.Hash("duble", "duble@gmail.com"),
+                    Position = PositionEnum.Goleiro
                 }
             };
 
@@ -116,8 +135,11 @@ namespace api.Context
         {            
             var peladaUsers = new PeladaUser[]
             {
-                new PeladaUser {UserId = users[0].Id, PeladaId = peladas[0].Id},
-                new PeladaUser {UserId = users[1].Id, PeladaId = peladas[0].Id},
+                new PeladaUser {UserId = users[0].Id, PeladaId = peladas[0].Id, IsMonthly = true},
+                new PeladaUser {UserId = users[1].Id, PeladaId = peladas[0].Id, IsMonthly = true},
+                new PeladaUser {UserId = users[2].Id, PeladaId = peladas[0].Id},
+                new PeladaUser {UserId = users[3].Id, PeladaId = peladas[0].Id},
+
                 new PeladaUser {UserId = users[0].Id, PeladaId = peladas[1].Id},
                 new PeladaUser {UserId = users[1].Id, PeladaId = peladas[1].Id}
             };

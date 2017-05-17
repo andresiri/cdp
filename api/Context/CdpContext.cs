@@ -21,6 +21,8 @@ namespace api.Context
         public DbSet<Arena> Arena { get; set; }
         public DbSet<Pelada> Pelada { get; set; }
         public DbSet<PeladaUser> PeladaUser { get; set; }
+        public DbSet<PeladaEvent> PeladaEvent { get; set; }
+        public DbSet<PeladaEventUser> PeladaEventUser { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -28,6 +30,8 @@ namespace api.Context
             ConfigureArena(modelBuilder);
             ConfigurePelada(modelBuilder);
             ConfigurePeladaUser(modelBuilder);
+            ConfigurePeladaEvent(modelBuilder);
+            ConfigurePeladaEventUser(modelBuilder);
 
             foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
             {
@@ -101,6 +105,37 @@ namespace api.Context
                 b.HasAlternateKey(a => new { a.PeladaId, a.UserId });
                 b.HasOne(p => p.User).WithMany(p => p.PeladaUsers).HasForeignKey(p => p.UserId).HasConstraintName("ForeignKey_PeladaUser_UserId");
                 b.HasOne(p => p.Pelada).WithMany(p => p.PeladaUsers).HasForeignKey(p => p.PeladaId).HasConstraintName("ForeignKey_PeladaUser_PeladaId");
+            });
+        }
+
+        private static void ConfigurePeladaEvent(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<PeladaEvent>(b =>
+            {
+                b.ToTable("peladaEvent");
+                b.HasKey(p => p.Id);
+                b.Property(p => p.Id).HasColumnName("id");
+                b.Property(p => p.PeladaId).IsRequired().HasColumnName("peladaId");
+                b.Property(p => p.Date).IsRequired().HasColumnName("date");
+                b.Property(p => p.Quantity).IsRequired().HasColumnName("quantity");
+                b.Property(p => p.CreatedAt).IsRequired().HasColumnName("createdAt");
+                b.HasOne(p => p.Pelada).WithMany(p => p.PeladaEvents).HasForeignKey(p => p.PeladaId).HasConstraintName("ForeignKey_PeladaEvent_PeladaId");
+            });
+        }
+
+        private static void ConfigurePeladaEventUser(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<PeladaEventUser>(b =>
+            {
+                b.ToTable("peladaEventUser");
+                b.HasKey(p => p.Id);
+                b.Property(p => p.Id).HasColumnName("id");
+                b.Property(p => p.PeladaEventId).IsRequired().HasColumnName("peladaEventoId");
+                b.Property(p => p.UserId).IsRequired().HasColumnName("userId");
+                b.Property(p => p.UserConfirmed).HasDefaultValue(false).HasColumnName("quantity");
+                b.Property(p => p.CreatedAt).IsRequired().HasColumnName("createdAt");
+                b.HasOne(p => p.PeladaEvent).WithMany(p => p.PeladaEventUsers).HasForeignKey(p => p.PeladaEventId).HasConstraintName("ForeignKey_PeladaEventUser_PeladaEventoId");
+                b.HasOne(p => p.User).WithMany(p => p.PeladaEventUsers).HasForeignKey(p => p.UserId).HasConstraintName("ForeignKey_PeladaEventUser_UserId");
             });
         }
 

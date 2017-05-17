@@ -75,6 +75,28 @@ namespace api.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "peladaEvent",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("MySQL:AutoIncrement", true),
+                    createdAt = table.Column<DateTime>(nullable: false),
+                    date = table.Column<DateTime>(nullable: false),
+                    peladaId = table.Column<int>(nullable: false),
+                    quantity = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_peladaEvent", x => x.id);
+                    table.ForeignKey(
+                        name: "ForeignKey_PeladaEvent_PeladaId",
+                        column: x => x.peladaId,
+                        principalTable: "pelada",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "peladaUser",
                 columns: table => new
                 {
@@ -103,6 +125,34 @@ namespace api.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "peladaEventUser",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("MySQL:AutoIncrement", true),
+                    createdAt = table.Column<DateTime>(nullable: false),
+                    peladaEventoId = table.Column<int>(nullable: false),
+                    quantity = table.Column<bool>(nullable: false, defaultValue: false),
+                    userId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_peladaEventUser", x => x.id);
+                    table.ForeignKey(
+                        name: "ForeignKey_PeladaEventUser_PeladaEventoId",
+                        column: x => x.peladaEventoId,
+                        principalTable: "peladaEvent",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "ForeignKey_PeladaEventUser_UserId",
+                        column: x => x.userId,
+                        principalTable: "user",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_pelada_arenaDefaultId",
                 table: "pelada",
@@ -114,6 +164,21 @@ namespace api.Migrations
                 column: "createdByUserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_peladaEvent_peladaId",
+                table: "peladaEvent",
+                column: "peladaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_peladaEventUser_peladaEventoId",
+                table: "peladaEventUser",
+                column: "peladaEventoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_peladaEventUser_userId",
+                table: "peladaEventUser",
+                column: "userId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_peladaUser_userId",
                 table: "peladaUser",
                 column: "userId");
@@ -122,7 +187,13 @@ namespace api.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "peladaEventUser");
+
+            migrationBuilder.DropTable(
                 name: "peladaUser");
+
+            migrationBuilder.DropTable(
+                name: "peladaEvent");
 
             migrationBuilder.DropTable(
                 name: "pelada");

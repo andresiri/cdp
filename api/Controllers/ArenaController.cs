@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using domain.Services;
 using domain.Entities;
-using Microsoft.AspNetCore.Authorization;
 using CartolaDaPelada.Controllers;
 
 namespace api.Controllers

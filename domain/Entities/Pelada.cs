@@ -11,6 +11,7 @@ namespace domain.Entities
 
         public virtual User CreatedByUser { get; set; }
         public virtual List<PeladaUser> PeladaUsers { get; set; }
+        public virtual List<PeladaEvent> PeladaEvents { get; set; }
         public virtual Arena ArenaDefault { get; set; }
 
         public override IList<ValidationFailure> GetModelErrors()

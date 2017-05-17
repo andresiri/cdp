@@ -8,7 +8,7 @@ using api.Context;
 namespace api.Migrations
 {
     [DbContext(typeof(CdpContext))]
-    [Migration("20170516231739_InititalDatabase")]
+    [Migration("20170517000153_InititalDatabase")]
     partial class InititalDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -74,6 +74,60 @@ namespace api.Migrations
                     b.HasIndex("CreatedByUserId");
 
                     b.ToTable("pelada");
+                });
+
+            modelBuilder.Entity("domain.Entities.PeladaEvent", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("id");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnName("createdAt");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnName("date");
+
+                    b.Property<int>("PeladaId")
+                        .HasColumnName("peladaId");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnName("quantity");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PeladaId");
+
+                    b.ToTable("peladaEvent");
+                });
+
+            modelBuilder.Entity("domain.Entities.PeladaEventUser", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("id");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnName("createdAt");
+
+                    b.Property<int>("PeladaEventId")
+                        .HasColumnName("peladaEventoId");
+
+                    b.Property<bool>("UserConfirmed")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("quantity")
+                        .HasDefaultValue(false);
+
+                    b.Property<int>("UserId")
+                        .HasColumnName("userId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PeladaEventId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("peladaEventUser");
                 });
 
             modelBuilder.Entity("domain.Entities.PeladaUser", b =>
@@ -162,6 +216,27 @@ namespace api.Migrations
                         .WithMany("Peladas")
                         .HasForeignKey("CreatedByUserId")
                         .HasConstraintName("ForeignKey_Pelada_UserId");
+                });
+
+            modelBuilder.Entity("domain.Entities.PeladaEvent", b =>
+                {
+                    b.HasOne("domain.Entities.Pelada", "Pelada")
+                        .WithMany("PeladaEvents")
+                        .HasForeignKey("PeladaId")
+                        .HasConstraintName("ForeignKey_PeladaEvent_PeladaId");
+                });
+
+            modelBuilder.Entity("domain.Entities.PeladaEventUser", b =>
+                {
+                    b.HasOne("domain.Entities.PeladaEvent", "PeladaEvent")
+                        .WithMany("PeladaEventUsers")
+                        .HasForeignKey("PeladaEventId")
+                        .HasConstraintName("ForeignKey_PeladaEventUser_PeladaEventoId");
+
+                    b.HasOne("domain.Entities.User", "User")
+                        .WithMany("PeladaEventUsers")
+                        .HasForeignKey("UserId")
+                        .HasConstraintName("ForeignKey_PeladaEventUser_UserId");
                 });
 
             modelBuilder.Entity("domain.Entities.PeladaUser", b =>
