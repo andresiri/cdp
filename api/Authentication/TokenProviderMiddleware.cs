@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using domain.Services;
+using domain.Entities.Exceptions;
+using Microsoft.AspNetCore.Mvc;
+using domain.Entities.Enum;
 
 namespace api.Authentication
 {
@@ -27,7 +30,8 @@ namespace api.Authentication
 
             _serializerSettings = new JsonSerializerSettings
             {
-                Formatting = Formatting.Indented
+                Formatting = Formatting.Indented,
+                NullValueHandling = NullValueHandling.Ignore
             };
         }
 
@@ -62,7 +66,10 @@ namespace api.Authentication
             if (identity == null)
             {
                 context.Response.StatusCode = 400;
-                await context.Response.WriteAsync("Invalid username or password.");
+                var exception = new CustomException("Invalid username or password.", ExceptionType.LoginError);
+                var json = JsonConvert.SerializeObject(exception, _serializerSettings);
+
+                await context.Response.WriteAsync(json);
                 return;
             }
 

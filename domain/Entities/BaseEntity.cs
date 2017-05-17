@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using FluentValidation.Results;
+using domain.Entities.Exceptions;
+using domain.Entities.Enum;
 
 namespace domain.Entities
 {
@@ -25,7 +27,7 @@ namespace domain.Entities
                     errorsText += error.ErrorMessage + "\n";
                 }
 
-                throw new Exception(errorsText);
+                throw new CustomException(errorsText, ExceptionType.CustomerError);
             }
         }
     }

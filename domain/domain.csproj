@@ -9,5 +9,6 @@
   <ItemGroup>
     <Folder Include="Entities\Model\" />
     <Folder Include="Entities\Enum\" />
+    <Folder Include="Entities\Exceptions\" />
   </ItemGroup>
 </Project>
