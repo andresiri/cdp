@@ -30,7 +30,6 @@ namespace api.Authentication
 
             _serializerSettings = new JsonSerializerSettings
             {
-                Formatting = Formatting.Indented,
                 NullValueHandling = NullValueHandling.Ignore
             };
         }
@@ -66,6 +65,7 @@ namespace api.Authentication
             if (identity == null)
             {
                 context.Response.StatusCode = 400;
+                context.Response.ContentType = "application/json";
                 var exception = new CustomException("Invalid username or password.", ExceptionType.LoginError);
                 var json = JsonConvert.SerializeObject(exception, _serializerSettings);
 

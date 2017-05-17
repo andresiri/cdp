@@ -1,5 +1,4 @@
 ﻿using System;
-using domain.Entities.Enum;
 namespace domain.Entities.Exceptions
 {
     public class CustomException : Exception
