@@ -30,7 +30,7 @@ namespace api.Controllers
             }
             catch (Exception ex)
             {
-                return Json(ex.Message);
+                return Json(ex);
             }
         }
 
@@ -42,11 +42,11 @@ namespace api.Controllers
             {
                 obj.PeladaId = peladaId;
                 var newPeladaUser = _peladaUserService.Create(obj);
-                return Json("xico");
+                return Json(newPeladaUser);
             }
             catch (Exception ex)
             {
-                return Json(ex.Message);
+                return Json(ex);
             }
         }
     }

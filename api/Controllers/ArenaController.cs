@@ -28,7 +28,7 @@ namespace api.Controllers
             }
             catch (Exception ex)
             {
-                return Json(ex.Message);
+                return Json(ex);
             }
         }
     }
