@@ -8,9 +8,6 @@ using api.ViewModel;
 
 namespace api.Controllers
 {
-    [Produces("application/json")]
-    [Route("api/[controller]")]
-    //[Authorize]
     public class ArenaController : BaseController
     {
         readonly IArenaService _arenaService;
@@ -23,6 +20,7 @@ namespace api.Controllers
         }
 
         [HttpPost]
+        [Route("api/arena")]
         public JsonResult Create([FromBody]Arena obj)
         {
             try

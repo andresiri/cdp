@@ -6,11 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using api.ViewModel;
 using Microsoft.AspNetCore.Authorization;
+using domain.Entities.Exceptions;
 
 namespace api.Controllers
 {
-    [Produces("application/json")]
-    [Route("api/[controller]")]
     public class PeladaController : BaseController
     {
         readonly IPeladaService _peladaService;
@@ -25,6 +24,7 @@ namespace api.Controllers
         }
 
         [HttpPost]
+        [Route("api/pelada")]
         public JsonResult Create([FromBody]Pelada obj)
         {
             try
@@ -43,7 +43,7 @@ namespace api.Controllers
 
         [HttpPost]
         [Authorize(Policy = "NeedsPeladaAccess")]
-        [Route("{peladaId}/add-user")]
+        [Route("api/pelada/{peladaId}/add-user")]
         public JsonResult AddUserToPelada([FromRoute]int peladaId, [FromBody]PeladaUser obj)
         {
             try

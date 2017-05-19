@@ -19,7 +19,7 @@ namespace api.Authentication
         private readonly TokenProviderOptions _options;
         private readonly JsonSerializerSettings _serializerSettings;
 
-        public TokenProviderMiddleware(RequestDelegate next, IOptions<TokenProviderOptions> options, ILoginService loginService) 
+        public TokenProviderMiddleware(RequestDelegate next, IOptions<TokenProviderOptions> options, ILoginService loginService)
         {
             _next = next;
 
@@ -66,7 +66,7 @@ namespace api.Authentication
             {
                 context.Response.StatusCode = 400;
                 context.Response.ContentType = "application/json";
-                var exception = new CustomException("Invalid username or password.", ExceptionType.LoginError);
+                var exception = new CustomException(ExceptionMessage.INVALID_USERNAME_PASSWORD, ExceptionType.LOGIN_ERROR);
                 var json = JsonConvert.SerializeObject(exception, _serializerSettings);
 
                 await context.Response.WriteAsync(json);
@@ -85,9 +85,9 @@ namespace api.Authentication
 
             // Create the JWT and write it to a string
             var jwt = new JwtSecurityToken(
-                issuer: _options.Issuer,
-                audience: _options.Audience,
-                claims: claims,
+                _options.Issuer,
+                _options.Audience,
+                claims,
                 notBefore: now,
                 expires: now.Add(_options.Expiration),
                 signingCredentials: _options.SigningCredentials);

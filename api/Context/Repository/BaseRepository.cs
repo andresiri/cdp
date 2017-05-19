@@ -24,8 +24,8 @@ namespace api.Context.Repository
         }
 
         public virtual T Create(T obj)
-        {                     
-            DbSet.Add(obj);
+        {     
+            DbSet.Add(obj);      
             return obj;         
         }
     }

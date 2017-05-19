@@ -20,14 +20,14 @@ namespace domain.Entities
 
             if (errors.Any()) {
 
-                var errorsText = "";
+                var info = new List<ExceptionInfo>();
 
                 foreach (var error in errors)
                 {
-                    errorsText += error.ErrorMessage + "\n";
+                    info.Add(new ExceptionInfo(error.PropertyName, error.ResourceName));
                 }
 
-                throw new CustomException(errorsText, ExceptionType.CustomerError);
+                throw new CustomException(ExceptionType.CUSTOM_ERROR, info);
             }
         }
     }

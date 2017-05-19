@@ -29,7 +29,6 @@ namespace api.Context.Repository
 
         public User GetByEmailAddress(string emailAddress)
         {
-            emailAddress = emailAddress.Trim();
             var user = _context.User.FirstOrDefault(u => u.Email.Equals(emailAddress));
             return user;
         }

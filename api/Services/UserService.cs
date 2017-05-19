@@ -3,6 +3,8 @@ using api.Context.Transaction;
 using domain.Entities;
 using domain.Lib;
 using domain.Services;
+using domain.Entities.Exceptions;
+using domain.Entities.Enum;
 
 namespace api.Services
 {
@@ -18,11 +20,11 @@ namespace api.Services
             {
                 obj.Validate();
 
-                var existentUser = _unitOfWork.UserRepository.GetByEmailAddress(obj.Email);
+                var existentUser = _unitOfWork.UserRepository.GetByEmailAddress(obj.Email.Trim());
 
                 if (existentUser != null)
                 {
-                    throw new Exception("Email already in use.");
+                    throw new CustomException(ExceptionMessage.EMAIL_ALREADY_IN_USE, ExceptionType.CUSTOM_ERROR);
                 }
 
                 obj.Password = Password.Hash(obj.Password, obj.Email);

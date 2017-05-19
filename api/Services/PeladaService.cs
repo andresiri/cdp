@@ -2,6 +2,7 @@
 using api.Context.Transaction;
 using domain.Entities;
 using domain.Services;
+using domain.Entities.Exceptions;
 
 namespace api.Services
 {

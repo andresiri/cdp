@@ -8,8 +8,6 @@ using api.ViewModel;
 
 namespace api.Controllers
 {
-    [Produces("application/json")]
-    [Route("api/[controller]")]
     public class UserController : BaseController
     {
         readonly IUserService _userService;
@@ -22,6 +20,7 @@ namespace api.Controllers
         }
 
         [HttpPost]
+        [Route("api/user")]
         public JsonResult Create([FromBody]User obj)
         {
             try
