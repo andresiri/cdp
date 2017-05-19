@@ -4,8 +4,8 @@ using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 
 namespace CartolaDaPelada.Controllers
-{
-    [Authorize(Policy = "NeedsPeladaAccess")]
+{    
+    [Authorize]
     public class BaseController : Controller
     {
         public int GetUserId()

@@ -40,8 +40,7 @@ namespace api.Context.Transaction
 
         public void Dispose()
         {
-            this.Dispose();
-            GC.SuppressFinalize(this);
+            context.Dispose();
         }
     }
 }

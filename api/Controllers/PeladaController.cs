@@ -3,19 +3,23 @@ using CartolaDaPelada.Controllers;
 using domain.Entities;
 using domain.Services;
 using Microsoft.AspNetCore.Mvc;
+using AutoMapper;
+using api.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 
 namespace api.Controllers
 {
     [Produces("application/json")]
     [Route("api/[controller]")]
-    //[Authorize]
     public class PeladaController : BaseController
     {
         readonly IPeladaService _peladaService;
         readonly IPeladaUserService _peladaUserService;
+        readonly IMapper _mapper;
 
-        public PeladaController(IPeladaService peladaService, IPeladaUserService peladaUserService)
+        public PeladaController(IMapper mapper, IPeladaService peladaService, IPeladaUserService peladaUserService)
         {
+            _mapper = mapper;
             _peladaService = peladaService;
             _peladaUserService = peladaUserService;
         }
@@ -26,7 +30,10 @@ namespace api.Controllers
             try
             {
                 var newPelada = _peladaService.Create(obj);
-                return Json(newPelada);
+
+                var peladaViewModel = _mapper.Map<PeladaViewModel>(newPelada);
+
+                return Json(peladaViewModel);
             }
             catch (Exception ex)
             {
@@ -35,6 +42,7 @@ namespace api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "NeedsPeladaAccess")]
         [Route("{peladaId}/add-user")]
         public JsonResult AddUserToPelada([FromRoute]int peladaId, [FromBody]PeladaUser obj)
         {
@@ -42,7 +50,10 @@ namespace api.Controllers
             {
                 obj.PeladaId = peladaId;
                 var newPeladaUser = _peladaUserService.Create(obj);
-                return Json(newPeladaUser);
+
+                var peladaUserViewModel = _mapper.Map<PeladaUserViewModel>(newPeladaUser);
+
+                return Json(peladaUserViewModel);
             }
             catch (Exception ex)
             {

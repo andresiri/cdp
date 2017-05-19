@@ -3,6 +3,8 @@ using CartolaDaPelada.Controllers;
 using domain.Entities;
 using domain.Services;
 using Microsoft.AspNetCore.Mvc;
+using AutoMapper;
+using api.ViewModel;
 
 namespace api.Controllers
 {
@@ -11,10 +13,12 @@ namespace api.Controllers
     public class UserController : BaseController
     {
         readonly IUserService _userService;
+        readonly IMapper _mapper;
 
-        public UserController(IUserService userService)
+        public UserController(IMapper mapper, IUserService userService)
         {
             _userService = userService;
+            _mapper = mapper;
         }
 
         [HttpPost]
@@ -23,7 +27,10 @@ namespace api.Controllers
             try
             {
                 var newUser = _userService.Create(obj);
-                return Json(newUser);
+
+                var userViewModel = _mapper.Map<UserViewModel>(newUser);
+
+                return Json(userViewModel);
             }
             catch (Exception ex)
             {

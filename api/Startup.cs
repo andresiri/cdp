@@ -16,6 +16,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using MySQL.Data.Entity.Extensions;
 using domain.Entities;
+using AutoMapper;
 
 namespace api
 {
@@ -53,6 +54,8 @@ namespace api
             services.AddScoped<IArenaService, ArenaService>();
             services.AddScoped<IPeladaService, PeladaService>();
             services.AddScoped<IPeladaUserService, PeladaUserService>();
+
+            services.AddAutoMapper();
 
             // Add framework services.
             var mvc = services.AddMvc();
