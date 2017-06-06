@@ -1,4 +1,4 @@
-﻿using api.Authorization;
+﻿﻿using api.Authorization;
 using api.Context;
 using api.Context.Repository;
 using api.Context.Transaction;
@@ -81,25 +81,6 @@ namespace api
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-
-            app.UseExceptionHandler(errorApp =>
-            {
-                errorApp.Run(async ctx =>
-                {
-                    ctx.Response.StatusCode = 500; // or another Status accordingly to Exception Type
-                    ctx.Response.ContentType = "application/json";
-
-                    var error = (CustomException)ctx.Features.Get<IExceptionHandlerFeature>();
-                    if (error != null)
-                    {
-                        await ctx.Response.WriteAsync(new ApiException()
-                        {
-                            ErrorMsg = error.ErrorMsg,
-                            Type = error.Type
-                        }.ToString(), Encoding.UTF8);
-                    }
-                });
-            });
 
             ConfigureAuth(app);
 

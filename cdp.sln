@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.0.0
 MinimumVisualStudioVersion = 10.0.0.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "api", "api/api.csproj", "{2A0C2C32-92A6-486A-84FD-BCA5489DC83C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "api", "api\api.csproj", "{2A0C2C32-92A6-486A-84FD-BCA5489DC83C}"
 EndProject
-Project("{7AFC19BB-07CD-4E03-A4C4-B8AA1BB4275A}") = "domain", "domain\domain.csproj", "{18BCF39C-6C30-44EF-A7E0-96E0807323A6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "domain", "domain\domain.csproj", "{18BCF39C-6C30-44EF-A7E0-96E0807323A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
