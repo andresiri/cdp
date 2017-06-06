@@ -36,7 +36,7 @@ namespace api.Controllers
             }
             catch (Exception ex)
             {
-                return Json(ex);
+                return FormatException(ex);
             }
         }
 
@@ -51,7 +51,7 @@ namespace api.Controllers
             }
             catch (CustomException ex)
             {
-                return Json(ex);
+                return FormatException(ex);
             }
         }
     }
