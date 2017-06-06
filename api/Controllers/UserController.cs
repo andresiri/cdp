@@ -1,10 +1,11 @@
-﻿using System;
+﻿﻿using System;
 using CartolaDaPelada.Controllers;
 using domain.Entities;
 using domain.Services;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using api.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 
 namespace api.Controllers
 {
@@ -20,6 +21,7 @@ namespace api.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymousAttribute]
         [Route("api/user")]
         public JsonResult Create([FromBody]User obj)
         {
