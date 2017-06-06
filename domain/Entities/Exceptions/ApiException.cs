@@ -1,17 +1,11 @@
-﻿using System;
+﻿using System.Collections.Generic;
+
 namespace domain.Entities.Exceptions
 {
-    public class ApiException : Exception
+    public class ApiException
     {
-        public int StatusCode { get; set; }
-
-        public ApiException(string message, int statusCode = 500) : base(message)
-        {
-            StatusCode = statusCode;
-        }
-        public ApiException(Exception ex, int statusCode = 500) : base(ex.Message)
-        {
-            StatusCode = statusCode;
-        }
+        public string ErrorMsg { get; set; }
+        public string Type { get; set; }
+        public List<ExceptionInfo> Info { get; set; }
     }
 }

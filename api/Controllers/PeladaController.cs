@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using api.ViewModel;
 using Microsoft.AspNetCore.Authorization;
-using domain.Entities.Exceptions;
 
 namespace api.Controllers
 {

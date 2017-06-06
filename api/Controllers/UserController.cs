@@ -1,4 +1,4 @@
-﻿﻿using System;
+﻿﻿﻿using System;
 using CartolaDaPelada.Controllers;
 using domain.Entities;
 using domain.Services;
@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using api.ViewModel;
 using Microsoft.AspNetCore.Authorization;
+using domain.Entities.Exceptions;
 
 namespace api.Controllers
 {
@@ -48,7 +49,7 @@ namespace api.Controllers
 
                 return Json(true);
             }
-            catch (Exception ex)
+            catch (CustomException ex)
             {
                 return Json(ex);
             }

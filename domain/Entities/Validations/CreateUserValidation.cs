@@ -2,9 +2,9 @@
 
 namespace domain.Entities.Validations
 {
-    public class UserValidation : AbstractValidator<User>
+    public class CreateUserValidation : AbstractValidator<User>
     {
-        public UserValidation()
+        public CreateUserValidation()
         {
             RuleFor(user => user.Email).NotEmpty().EmailAddress().Length(1, 100);
             RuleFor(user => user.Password).NotEmpty();

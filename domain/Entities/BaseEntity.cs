@@ -4,6 +4,7 @@ using System.Linq;
 using FluentValidation.Results;
 using domain.Entities.Exceptions;
 using domain.Entities.Enum;
+using FluentValidation;
 
 namespace domain.Entities
 {

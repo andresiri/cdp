@@ -22,7 +22,7 @@ namespace domain.Entities
 
         public override IList<ValidationFailure> GetModelErrors()
         {
-            var validator = new UserValidation();
+            var validator = new CreateUserValidation();
             var results = validator.Validate(this);
 
             return results.Errors;
