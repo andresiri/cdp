@@ -1,5 +1,6 @@
 ﻿using api.Context.Transaction;
 using FluentValidation;
+using System.Linq;
 
 namespace api.Op.Arena
 {
@@ -19,7 +20,9 @@ namespace api.Op.Arena
 
         public override object Process(domain.Entities.Arena entity)
         {
-            var arenas = _unitOfWork.ArenaRepository.GetAll();
+            var arenas = _unitOfWork.ArenaRepository.DbSet.Where(w => 
+                    w.Description.Contains(entity.Description) || string.IsNullOrEmpty(entity.Description)
+                ).ToList();
 
             return arenas;
         }

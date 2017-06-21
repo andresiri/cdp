@@ -42,12 +42,12 @@ namespace api.Controllers
 
         [HttpGet]
         [Route("api/arena")]
-        public JsonResult Get()
+        public JsonResult Get([FromQuery]string description)
         {
             try
             {
                 var op = new GetArenasOp(_unitOfWork);
-                var arenas = op.Execute(null);
+                var arenas = op.Execute(new Arena(){Description = description}) ;
 
                 var arenasViewModel = _mapper.Map<List<ArenaViewModel>>(arenas);
 
