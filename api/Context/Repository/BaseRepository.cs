@@ -4,6 +4,8 @@ using System.Diagnostics.Contracts;
 using System.Linq;
 using domain.Repositories;
 using Microsoft.EntityFrameworkCore;
+using domain.Entities.Exceptions;
+using domain.Entities.Enum;
 
 namespace api.Context.Repository
 {
@@ -25,8 +27,20 @@ namespace api.Context.Repository
 
         public virtual T Create(T obj)
         {     
-            DbSet.Add(obj);      
-            return obj;         
+            try
+            {
+                DbSet.Add(obj);
+                return obj;
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("same key is already being tracked")) {
+
+                    throw new CustomException(ExceptionMessage.DUPLICATE_KEY, ExceptionType.DATABASE_ERROR);
+                }
+
+                throw ex;
+            }
         }
     }
 }

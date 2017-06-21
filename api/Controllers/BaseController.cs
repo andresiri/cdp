@@ -26,8 +26,15 @@ namespace CartolaDaPelada.Controllers
 
             if (type == typeof(CustomException)){
 
-                jsonException.Info = ((CustomException)e).Info;
-                jsonException.Type = ((CustomException)e).Type;
+                var customException = (CustomException)e;
+
+                jsonException.Info = customException.Info;
+                jsonException.Type = customException.Type;
+
+                if (!string.IsNullOrEmpty(customException.ErrorMsg)) {
+
+                    jsonException.Message = customException.ErrorMsg;
+                }
             }
 
             return Json(jsonException);
