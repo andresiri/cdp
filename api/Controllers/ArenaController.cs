@@ -6,6 +6,7 @@ using AutoMapper;
 using api.ViewModel;
 using api.Op.Arena;
 using api.Context.Transaction;
+using System.Collections.Generic;
 
 namespace api.Controllers
 {
@@ -32,6 +33,25 @@ namespace api.Controllers
                 var arenaViewModel = _mapper.Map<ArenaViewModel>(newArena);
 
                 return Json(arenaViewModel);
+            }
+            catch (Exception ex)
+            {
+                return Json(ex);
+            }
+        }
+
+        [HttpGet]
+        [Route("api/arena")]
+        public JsonResult Get()
+        {
+            try
+            {
+                var op = new GetArenasOp(_unitOfWork);
+                var arenas = op.Execute(null);
+
+                var arenasViewModel = _mapper.Map<List<ArenaViewModel>>(arenas);
+
+                return Json(arenasViewModel);
             }
             catch (Exception ex)
             {
