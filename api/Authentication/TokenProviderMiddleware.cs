@@ -5,25 +5,25 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using domain.Services;
-using domain.Entities.Exceptions;
-using Microsoft.AspNetCore.Mvc;
-using domain.Entities.Enum;
+using api.Op.Login;
+using api.Context.Transaction;
+using domain.Entities.Model;
+using domain.Entities;
 
 namespace api.Authentication
 {
     public class TokenProviderMiddleware
     {
-        private readonly ILoginService _loginService;
         private readonly RequestDelegate _next;
         private readonly TokenProviderOptions _options;
         private readonly JsonSerializerSettings _serializerSettings;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public TokenProviderMiddleware(RequestDelegate next, IOptions<TokenProviderOptions> options, ILoginService loginService)
+        public TokenProviderMiddleware(RequestDelegate next, IOptions<TokenProviderOptions> options, IUnitOfWork unitOfWork)
         {
             _next = next;
 
-            _loginService = loginService;
+            _unitOfWork = unitOfWork;
 
             _options = options.Value;
             ThrowIfInvalidOptions(_options);
@@ -59,16 +59,22 @@ namespace api.Authentication
             var email = context.Request.Form["email"];
             var password = context.Request.Form["password"];
 
-            var user = _loginService.Login(email, password);
+            var loginOp = new LoginOp(_unitOfWork);
 
-            var identity = await _options.IdentityResolver(user);
-            if (identity == null)
+            var user = new User();
+
+            try
+            {
+                user = (User)loginOp.Execute(new LoginModel { Email = email, Password = password });   
+                var identity = await _options.IdentityResolver(user);
+            }
+            catch (Exception ex) 
             {
                 context.Response.StatusCode = 400;
                 context.Response.ContentType = "application/json";
-                var exception = new CustomException(ExceptionMessage.INVALID_USERNAME_PASSWORD, ExceptionType.LOGIN_ERROR);
-                var json = JsonConvert.SerializeObject(exception, _serializerSettings);
 
+                var jsonException = ExceptionHandler.FormatException(ex);
+                var json = JsonConvert.SerializeObject(jsonException, _serializerSettings);
                 await context.Response.WriteAsync(json);
                 return;
             }

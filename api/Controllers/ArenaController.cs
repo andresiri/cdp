@@ -1,22 +1,23 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
-using domain.Services;
 using domain.Entities;
 using CartolaDaPelada.Controllers;
 using AutoMapper;
 using api.ViewModel;
+using api.Op.Arena;
+using api.Context.Transaction;
 
 namespace api.Controllers
 {
     public class ArenaController : BaseController
     {
-        readonly IArenaService _arenaService;
         readonly IMapper _mapper;
+        readonly IUnitOfWork _unitOfWork;
 
-        public ArenaController(IMapper mapper, IArenaService arenaService)
+        public ArenaController(IMapper mapper, IUnitOfWork unitOfWork)
         {
-            _arenaService = arenaService;
             _mapper = mapper;
+            _unitOfWork = unitOfWork;
         }
 
         [HttpPost]
@@ -25,11 +26,12 @@ namespace api.Controllers
         {
             try
             {
-                var newArena = _arenaService.Create(obj);
+                var op = new CreateArenaOp(_unitOfWork);
+                var newArena = op.Execute(obj);
 
                 var arenaViewModel = _mapper.Map<ArenaViewModel>(newArena);
 
-                return Json(newArena);
+                return Json(arenaViewModel);
             }
             catch (Exception ex)
             {

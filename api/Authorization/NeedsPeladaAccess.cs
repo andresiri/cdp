@@ -3,20 +3,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Routing;
-using domain.Services;
+using api.Context.Transaction;
+using api.Op.PeladaUser;
 
 namespace api.Authorization
 {
     public class NeedsPeladaAccess : AuthorizationHandler<NeedsPeladaAccessRequirement>
     {
         readonly IHttpContextAccessor _contextAccessor;
-        readonly IPeladaUserService _peladaUserService;
+        readonly IUnitOfWork _unitOfWork;
 
-        public NeedsPeladaAccess(IHttpContextAccessor contextAccessor, IPeladaUserService peladaUserService)
+        public NeedsPeladaAccess(IHttpContextAccessor contextAccessor, IUnitOfWork unitOfWork)
         {
             _contextAccessor = contextAccessor;
-            _peladaUserService = peladaUserService;
+            _unitOfWork = unitOfWork;
         }
 
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, NeedsPeladaAccessRequirement requirement)
@@ -36,7 +36,7 @@ namespace api.Authorization
                 var userId = Convert.ToInt32(context.User.Claims.First(c => c.Type.Equals("userId")).Value);
                 var peladaId = Convert.ToInt32(pathSplit[indexOfPelada + 1]);
 
-                var peladasUser = _peladaUserService.GetPeladasByUser(userId);
+                var peladasUser = _unitOfWork.PeladaUserRepository.GetPeladasByUser(userId);
 
                 var hasAccessToPelada = peladasUser.Any(w => w.PeladaId.Equals(peladaId));
 

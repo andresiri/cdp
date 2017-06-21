@@ -17,11 +17,11 @@ namespace CartolaDaPelada.Controllers
 
         public JsonResult FormatException(Exception e) {
 
-            var jsonException = new JsonException();
-
-            jsonException.Stacktrace = e.StackTrace;
-            jsonException.Message = e.Message;
-
+            var jsonException = new JsonException()
+            {
+                Stacktrace = e.StackTrace,
+                Message = e.Message
+            };
             var type = e.GetType();
 
             if (type == typeof(CustomException)){

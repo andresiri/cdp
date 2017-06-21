@@ -1,10 +1,8 @@
-﻿﻿using api.Authorization;
+﻿using api.Authorization;
 using api.Context;
 using api.Context.Repository;
 using api.Context.Transaction;
-using api.Services;
 using domain.Repositories;
-using domain.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -14,11 +12,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using MySQL.Data.Entity.Extensions;
-using domain.Entities;
 using AutoMapper;
-using Microsoft.AspNetCore.Diagnostics;
-using System.Text;
-using domain.Entities.Exceptions;
+using domain.Entities;
 
 namespace api
 {
@@ -45,17 +40,11 @@ namespace api
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IAuthorizationHandler, NeedsPeladaAccess>();
 
-            services.AddScoped<IBaseRepository<BaseEntity>, BaseRepository<BaseEntity>>();
+            services.AddScoped<IBaseRepository<EntityModel>, BaseRepository<EntityModel>>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IArenaRepository, ArenaRepository>();
             services.AddScoped<IPeladaRepository, PeladaRepository>();
             services.AddScoped<IPeladaUserRepository, PeladaUserRepository>();
-
-            services.AddScoped<ILoginService, LoginService>();
-            services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IArenaService, ArenaService>();
-            services.AddScoped<IPeladaService, PeladaService>();
-            services.AddScoped<IPeladaUserService, PeladaUserService>();
 
             services.AddAutoMapper();
 

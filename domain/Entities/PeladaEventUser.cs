@@ -4,7 +4,7 @@ using FluentValidation.Results;
 
 namespace domain.Entities
 {
-    public class PeladaEventUser : BaseEntity
+    public class PeladaEventUser : EntityModel
     {
         public int PeladaEventId { get; set; }
         public int UserId { get; set; }
@@ -12,10 +12,5 @@ namespace domain.Entities
 
         public virtual PeladaEvent PeladaEvent { get; set; }
         public virtual User User { get; set; }
-
-        public override IList<ValidationFailure> GetModelErrors()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

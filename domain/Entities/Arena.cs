@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using FluentValidation.Results;
 
 namespace domain.Entities
 {
-    public class Arena : BaseEntity
+    public class Arena : EntityModel
     {
         public string Description { get; set; }
 		public string Name { get; set; }
@@ -11,10 +10,5 @@ namespace domain.Entities
 		public string Longitude { get; set; }	
 
         public List<Pelada> Peladas { get; set; }
-
-        public override IList<ValidationFailure> GetModelErrors()
-        {
-            return new ValidationFailure[]{};
-        }
     }
 }

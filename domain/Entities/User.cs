@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
-using domain.Entities.Validations;
-using FluentValidation.Results;
 using System;
 
 namespace domain.Entities
 {
-    public class User : BaseEntity
+    public class User : EntityModel
     {
         public string Email { get; set; }
         public string Password { get; set; }
@@ -19,13 +17,5 @@ namespace domain.Entities
         public virtual List<PeladaEventUser> PeladaEventUsers { get; set; }
         public virtual List<PeladaUser> PeladaUsers { get; set; }
         public virtual List<Pelada> Peladas { get; set; }
-
-        public override IList<ValidationFailure> GetModelErrors()
-        {
-            var validator = new CreateUserValidation();
-            var results = validator.Validate(this);
-
-            return results.Errors;
-        }
     }
 }

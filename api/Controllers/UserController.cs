@@ -1,24 +1,25 @@
-﻿﻿﻿using System;
+﻿using System;
 using CartolaDaPelada.Controllers;
 using domain.Entities;
-using domain.Services;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using api.ViewModel;
 using Microsoft.AspNetCore.Authorization;
-using domain.Entities.Exceptions;
+using api.Op.User;
+using api.Context.Transaction;
 
 namespace api.Controllers
 {
     public class UserController : BaseController
     {
-        readonly IUserService _userService;
         readonly IMapper _mapper;
+        readonly IUnitOfWork _unitOfWork;
 
-        public UserController(IMapper mapper, IUserService userService)
+        public UserController(IMapper mapper, IUnitOfWork unitOfWork)
         {
-            _userService = userService;
             _mapper = mapper;
+            _unitOfWork = unitOfWork;
+
         }
 
         [HttpPost]
@@ -28,28 +29,14 @@ namespace api.Controllers
         {
             try
             {
-                var newUser = _userService.Create(obj);
+                var op = new CreateUserOp(_unitOfWork);
+                var newUser = op.Execute(obj);
 
                 var userViewModel = _mapper.Map<UserViewModel>(newUser);
 
                 return Json(userViewModel);
             }
             catch (Exception ex)
-            {
-                return FormatException(ex);
-            }
-        }
-
-        [HttpDelete("{id}")]
-        public JsonResult Delete([FromRoute]int id)
-        {
-            try
-            {
-                _userService.Delete(id);
-
-                return Json(true);
-            }
-            catch (CustomException ex)
             {
                 return FormatException(ex);
             }

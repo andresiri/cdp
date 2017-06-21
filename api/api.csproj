@@ -9,21 +9,24 @@
     <Folder Include="Authorization\" />
     <Folder Include="AutoMapper\" />
     <Folder Include="ViewModel\" />
+    <Folder Include="Op\" />
+    <Folder Include="Op\User\" />
+    <Folder Include="Op\Pelada\" />
+    <Folder Include="Op\Login\" />
+    <Folder Include="Op\Arena\" />
+    <Folder Include="Op\PeladaUser\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore" Version="1.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="1.1.1">
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="1.1.1">
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="1.1.1">
-    </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="1.1.1" />
     <PackageReference Include="SapientGuardian.EntityFrameworkCore.MySql" Version="7.1.23" />
-    <PackageReference Include="AutoMapper" Version="6.0.2" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="1.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="1.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="1.1.2" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="1.1.2" />
+    <PackageReference Include="AutoMapper" Version="6.1.0" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
@@ -40,5 +43,7 @@
     <Compile Remove="Migrations\20170426002525_AddArenaTable.cs" />
     <Compile Remove="Migrations\CdpContextModelSnapshot.cs" />
     <Compile Remove="Authorization\PeladaAuthorization.cs" />
+    <Compile Remove="Op\User\BaseOp.cs" />
+    <Compile Remove="Services\PeladaService.cs" />
   </ItemGroup>
 </Project>

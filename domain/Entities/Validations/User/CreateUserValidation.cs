@@ -1,8 +1,8 @@
-﻿using FluentValidation;
+﻿﻿using FluentValidation;
 
-namespace domain.Entities.Validations
+namespace domain.Entities.Validations.User
 {
-    public class CreateUserValidation : AbstractValidator<User>
+    public class CreateUserValidation : AbstractValidator<Entities.User>
     {
         public CreateUserValidation()
         {

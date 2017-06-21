@@ -141,9 +141,9 @@ namespace api.Context
 
         public override int SaveChanges()
         {
-            var modifiedEntries = ChangeTracker.Entries<BaseEntity>().Where(e => e.State == EntityState.Added || e.State == EntityState.Modified);
+            var modifiedEntries = ChangeTracker.Entries<EntityModel>().Where(e => e.State == EntityState.Added || e.State == EntityState.Modified);
 
-            foreach (EntityEntry<BaseEntity> entry in modifiedEntries)
+            foreach (EntityEntry<EntityModel> entry in modifiedEntries)
             {
                 if (entry.State == EntityState.Added)
                 {
