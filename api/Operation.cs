@@ -20,9 +20,12 @@ namespace api
             try
             {
                 var validation = GetValidation(entity);
-                var validationResult = validation.Validate(entity);
 
-                HandleErrors(validationResult.Errors);
+                if (validation != null) {
+                 
+                    var validationResult = validation.Validate(entity);
+                    HandleErrors(validationResult.Errors);
+                }
 
                 var result = Process(entity);
 
