@@ -9,11 +9,8 @@ namespace api.Op.User
 {
     public class CreateUserOp : Operation<domain.Entities.User>
     {
-        readonly IUnitOfWork _unitOfWork;
-
-        public CreateUserOp(IUnitOfWork unitOfWork)
+        public CreateUserOp(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
-            _unitOfWork = unitOfWork;
         }
 
         public override AbstractValidator<domain.Entities.User> GetValidation(domain.Entities.User entity)
@@ -33,7 +30,6 @@ namespace api.Op.User
             entity.Password = Password.Hash(entity.Password, entity.Email);
 
             var newUser = _unitOfWork.UserRepository.Create(entity);
-            _unitOfWork.Save();
 
             return newUser;
         }

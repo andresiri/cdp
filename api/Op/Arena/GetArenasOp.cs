@@ -6,11 +6,8 @@ namespace api.Op.Arena
 {
     public class GetArenasOp : Operation<domain.Entities.Arena>
     {
-        readonly IUnitOfWork _unitOfWork;
-
-        public GetArenasOp(IUnitOfWork unitOfWork)
+        public GetArenasOp(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
-            _unitOfWork = unitOfWork;
         }
 
         public override AbstractValidator<domain.Entities.Arena> GetValidation(domain.Entities.Arena entity)

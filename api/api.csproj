@@ -15,6 +15,7 @@
     <Folder Include="Op\Login\" />
     <Folder Include="Op\Arena\" />
     <Folder Include="Op\PeladaUser\" />
+    <Folder Include="Op\PeladaEvent\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="SapientGuardian.EntityFrameworkCore.MySql" Version="7.1.23" />

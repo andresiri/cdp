@@ -6,11 +6,19 @@ using domain.Entities.Enum;
 using domain.Entities.Exceptions;
 using FluentValidation;
 using FluentValidation.Results;
+using api.Context.Transaction;
 
 namespace api
 {
     public abstract class Operation<T> where T: Model
     {
+        public readonly IUnitOfWork _unitOfWork;
+
+        public Operation(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
+
         public abstract AbstractValidator<T> GetValidation(T entity);
 
         public abstract object Process(T entity);
@@ -28,6 +36,9 @@ namespace api
                 }
 
                 var result = Process(entity);
+
+                //validate if last operation
+                _unitOfWork.Save();
 
                 return result;
             }

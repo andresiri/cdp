@@ -10,11 +10,8 @@ namespace api.Op.Login
 {
     public class LoginOp : Operation<LoginModel>
     {
-        readonly IUnitOfWork _unitOfWork;
-
-        public LoginOp(IUnitOfWork unitOfWork)
+        public LoginOp(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
-            _unitOfWork = unitOfWork;
         }
 
         public override AbstractValidator<LoginModel> GetValidation(LoginModel entity)

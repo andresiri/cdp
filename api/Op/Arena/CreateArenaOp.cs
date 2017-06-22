@@ -6,11 +6,8 @@ namespace api.Op.Arena
 {
     public class CreateArenaOp : Operation<domain.Entities.Arena>
     {
-        readonly IUnitOfWork _unitOfWork;
-
-        public CreateArenaOp(IUnitOfWork unitOfWork)
+        public CreateArenaOp(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
-            _unitOfWork = unitOfWork;
         }
 
         public override AbstractValidator<domain.Entities.Arena> GetValidation(domain.Entities.Arena entity)
@@ -21,7 +18,6 @@ namespace api.Op.Arena
         public override object Process(domain.Entities.Arena entity)
         {
             var newArena = _unitOfWork.ArenaRepository.Create(entity);
-            _unitOfWork.Save();
 
             return newArena;
         }

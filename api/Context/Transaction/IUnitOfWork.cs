@@ -12,5 +12,6 @@ namespace api.Context.Transaction
         ArenaRepository ArenaRepository { get; }
         PeladaRepository PeladaRepository { get; }
         PeladaUserRepository PeladaUserRepository { get; }
+        PeladaEventRepository PeladaEventRepository { get; }
     }
 }

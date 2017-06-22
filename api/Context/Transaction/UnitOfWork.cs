@@ -14,6 +14,7 @@ namespace api.Context.Transaction
         ArenaRepository arenaRepository;
         PeladaRepository peladaRepository;
         PeladaUserRepository peladaUserRepository;
+        PeladaEventRepository peladaEventRepository;
 
         public UnitOfWork(CdpContext _context)
         {
@@ -25,6 +26,7 @@ namespace api.Context.Transaction
         public ArenaRepository ArenaRepository => arenaRepository ?? (arenaRepository = new ArenaRepository(context));
         public PeladaRepository PeladaRepository => peladaRepository ?? (peladaRepository = new PeladaRepository(context));
         public PeladaUserRepository PeladaUserRepository => peladaUserRepository ?? (peladaUserRepository = new PeladaUserRepository(context));
+        public PeladaEventRepository PeladaEventRepository => peladaEventRepository ?? (peladaEventRepository = new PeladaEventRepository(context));
 
         public void Save()
         {

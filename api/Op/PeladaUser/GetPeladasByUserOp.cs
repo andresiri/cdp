@@ -5,11 +5,8 @@ namespace api.Op.PeladaUser
 {
     public class GetPeladasByUserOp : Operation<domain.Entities.PeladaUser>
     {
-        readonly IUnitOfWork _unitOfWork;
-
-        public GetPeladasByUserOp(IUnitOfWork unitOfWork)
+        public GetPeladasByUserOp(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
-            _unitOfWork = unitOfWork;
         }
 
         public override AbstractValidator<domain.Entities.PeladaUser> GetValidation(domain.Entities.PeladaUser entity)

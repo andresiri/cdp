@@ -14,5 +14,6 @@
     <Folder Include="Entities\Validations\Arena\" />
     <Folder Include="Entities\Validations\PeladaUser\" />
     <Folder Include="Entities\Validations\User\" />
+    <Folder Include="Entities\Validations\PeladaEvent\" />
   </ItemGroup>
 </Project>
