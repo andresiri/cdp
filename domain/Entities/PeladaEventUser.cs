@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using FluentValidation.Results;
-
-namespace domain.Entities
+﻿namespace domain.Entities
 {
     public class PeladaEventUser : EntityModel
     {

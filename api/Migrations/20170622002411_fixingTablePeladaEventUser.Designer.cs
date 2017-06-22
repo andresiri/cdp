@@ -8,9 +8,10 @@ using api.Context;
 namespace api.Migrations
 {
     [DbContext(typeof(CdpContext))]
-    partial class CdpContextModelSnapshot : ModelSnapshot
+    [Migration("20170622002411_fixingTablePeladaEventUser")]
+    partial class fixingTablePeladaEventUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2");

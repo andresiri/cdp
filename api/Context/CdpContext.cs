@@ -130,9 +130,9 @@ namespace api.Context
                 b.ToTable("peladaEventUser");
                 b.HasKey(p => p.Id);
                 b.Property(p => p.Id).HasColumnName("id");
-                b.Property(p => p.PeladaEventId).IsRequired().HasColumnName("peladaEventoId");
+                b.Property(p => p.PeladaEventId).IsRequired().HasColumnName("peladaEventId");
                 b.Property(p => p.UserId).IsRequired().HasColumnName("userId");
-                b.Property(p => p.UserConfirmed).HasDefaultValue(false).HasColumnName("quantity");
+                b.Property(p => p.UserConfirmed).HasDefaultValue(false).HasColumnName("userConfirmed");
                 b.Property(p => p.CreatedAt).IsRequired().HasColumnName("createdAt");
                 b.HasOne(p => p.PeladaEvent).WithMany(p => p.PeladaEventUsers).HasForeignKey(p => p.PeladaEventId).HasConstraintName("ForeignKey_PeladaEventUser_PeladaEventoId");
                 b.HasOne(p => p.User).WithMany(p => p.PeladaEventUsers).HasForeignKey(p => p.UserId).HasConstraintName("ForeignKey_PeladaEventUser_UserId");
