@@ -17,6 +17,9 @@ namespace api.Context
 
             if (ResetData)
             {
+                context.Database.ExecuteSqlCommand("DELETE FROM peladaEvent");
+                context.Database.ExecuteSqlCommand("ALTER TABLE peladaEvent AUTO_INCREMENT = 1");
+
                 context.Database.ExecuteSqlCommand("DELETE FROM peladaUser");
                 context.Database.ExecuteSqlCommand("ALTER TABLE peladaUser AUTO_INCREMENT = 1");
 
