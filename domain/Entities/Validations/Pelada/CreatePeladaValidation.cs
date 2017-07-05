@@ -8,6 +8,7 @@ namespace domain.Entities.Validations.Pelada
         public CreatePeladaValidation()
         {
             RuleFor(pelada => pelada.Name).NotEmpty();
+            RuleFor(pelada => pelada.Day).NotEmpty();
         }
     }
 }

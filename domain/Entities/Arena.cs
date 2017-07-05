@@ -10,5 +10,6 @@ namespace domain.Entities
 		public string Longitude { get; set; }	
 
         public List<Pelada> Peladas { get; set; }
+        public virtual List<PeladaEvent> PeladaEvents { get; set; }
     }
 }

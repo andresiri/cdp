@@ -14,6 +14,7 @@ using Microsoft.Extensions.Logging;
 using MySQL.Data.Entity.Extensions;
 using AutoMapper;
 using domain.Entities;
+using api.Op.User;
 
 namespace api
 {
@@ -36,6 +37,7 @@ namespace api
         {
             services.AddDbContext<CdpContext>(options => options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
             services.AddSingleton<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<CreateUserOp, CreateUserOp>();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IAuthorizationHandler, NeedsPeladaAccess>();

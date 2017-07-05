@@ -1,5 +1,4 @@
-﻿using System;
-namespace domain.Entities.Enum
+﻿namespace domain.Entities.Enum
 {
     public static class PositionEnum
     {

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace api.Migrations
 {
-    public partial class fixingTablePeladaEventUser : Migration
+    public partial class InititalDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -55,6 +55,7 @@ namespace api.Migrations
                     arenaDefaultId = table.Column<int>(nullable: true),
                     createdAt = table.Column<DateTime>(nullable: false),
                     createdByUserId = table.Column<int>(nullable: false),
+                    day = table.Column<string>(nullable: false),
                     name = table.Column<string>(maxLength: 50, nullable: true)
                 },
                 constraints: table =>
@@ -80,14 +81,21 @@ namespace api.Migrations
                 {
                     id = table.Column<int>(nullable: false)
                         .Annotation("MySQL:AutoIncrement", true),
+                    arenaId = table.Column<int>(nullable: false),
                     createdAt = table.Column<DateTime>(nullable: false),
                     date = table.Column<DateTime>(nullable: false),
                     peladaId = table.Column<int>(nullable: false),
-                    quantity = table.Column<int>(nullable: false)
+                    quantityOfUsers = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_peladaEvent", x => x.id);
+                    table.ForeignKey(
+                        name: "ForeignKey_PeladaEvent_ArenaId",
+                        column: x => x.arenaId,
+                        principalTable: "arena",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "ForeignKey_PeladaEvent_PeladaId",
                         column: x => x.peladaId,
@@ -162,6 +170,11 @@ namespace api.Migrations
                 name: "IX_pelada_createdByUserId",
                 table: "pelada",
                 column: "createdByUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_peladaEvent_arenaId",
+                table: "peladaEvent",
+                column: "arenaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_peladaEvent_peladaId",

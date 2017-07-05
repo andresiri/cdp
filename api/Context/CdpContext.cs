@@ -84,6 +84,7 @@ namespace api.Context
                 b.Property(p => p.Id).HasColumnName("id");
                 b.Property(p => p.Name).HasColumnName("name").HasMaxLength(50);
                 b.Property(p => p.ArenaDefaultId).HasColumnName("arenaDefaultId");
+                b.Property(p => p.Day).IsRequired().HasColumnName("day");
                 b.Property(p => p.CreatedByUserId).HasColumnName("createdByUserId");
                 b.Property(p => p.CreatedAt).IsRequired().HasColumnName("createdAt");
                 b.HasOne(p => p.ArenaDefault).WithMany(p => p.Peladas).OnDelete(DeleteBehavior.Restrict).HasForeignKey(p => p.ArenaDefaultId).HasConstraintName("ForeignKey_Pelada_ArenaDefaultId");
@@ -117,9 +118,11 @@ namespace api.Context
                 b.Property(p => p.Id).HasColumnName("id");
                 b.Property(p => p.PeladaId).IsRequired().HasColumnName("peladaId");
                 b.Property(p => p.Date).IsRequired().HasColumnName("date");
-                b.Property(p => p.Quantity).IsRequired().HasColumnName("quantity");
+                b.Property(p => p.QuantityOfUsers).IsRequired().HasColumnName("quantityOfUsers");
+                b.Property(p => p.ArenaId).IsRequired().HasColumnName("arenaId");
                 b.Property(p => p.CreatedAt).IsRequired().HasColumnName("createdAt");
                 b.HasOne(p => p.Pelada).WithMany(p => p.PeladaEvents).HasForeignKey(p => p.PeladaId).HasConstraintName("ForeignKey_PeladaEvent_PeladaId");
+                b.HasOne(p => p.Arena).WithMany(p => p.PeladaEvents).HasForeignKey(p => p.ArenaId).HasConstraintName("ForeignKey_PeladaEvent_ArenaId");
             });
         }
 

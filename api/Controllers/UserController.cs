@@ -14,23 +14,23 @@ namespace api.Controllers
     {
         readonly IMapper _mapper;
         readonly IUnitOfWork _unitOfWork;
+        readonly CreateUserOp _createUserOp;
 
-        public UserController(IMapper mapper, IUnitOfWork unitOfWork)
+        public UserController(IMapper mapper, IUnitOfWork unitOfWork, CreateUserOp createUserOp)
         {
             _mapper = mapper;
             _unitOfWork = unitOfWork;
-
+            _createUserOp = createUserOp;
         }
 
         [HttpPost]
         [AllowAnonymousAttribute]
-        [Route("api/user")]
+        [Route("api/users")]
         public JsonResult Create([FromBody]User obj)
         {
             try
             {
-                var op = new CreateUserOp(_unitOfWork);
-                var newUser = op.Execute(obj);
+                var newUser = _createUserOp.Execute(obj);
 
                 var userViewModel = _mapper.Map<UserViewModel>(newUser);
 

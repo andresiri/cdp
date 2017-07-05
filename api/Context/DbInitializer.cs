@@ -119,9 +119,9 @@ namespace api.Context
         {            
             var peladas = new Pelada[]
             {
-                new Pelada {Name = "Pelada grotesca", CreatedByUserId = users[0].Id},
-                new Pelada {Name = "Pelada da Massa", CreatedByUserId = users[0].Id},
-                new Pelada {Name = "Pelada do floresta encantada", CreatedByUserId = users[1].Id}
+                new Pelada {Name = "Pelada grotesca", Day = WeekdayEnum.TUESDAY, CreatedByUserId = users[0].Id},
+                new Pelada {Name = "Pelada da Massa", Day = WeekdayEnum.MONDAY, CreatedByUserId = users[0].Id},
+                new Pelada {Name = "Pelada do floresta encantada", Day = WeekdayEnum.FRIDAY, CreatedByUserId = users[1].Id}
             };
 
             var newPeladas = new List<Pelada>();

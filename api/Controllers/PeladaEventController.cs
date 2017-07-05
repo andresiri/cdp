@@ -23,7 +23,7 @@ namespace api.Controllers
 
         [HttpPost]
         [Authorize(Policy = "NeedsPeladaAccess")]
-        [Route("api/pelada/{peladaId}/pelada-event")]
+        [Route("api/peladas/{peladaId}/pelada-events")]
         public JsonResult Create([FromRoute]int peladaId, [FromBody]PeladaEvent obj)
         {
             try

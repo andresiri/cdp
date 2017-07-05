@@ -23,7 +23,7 @@ namespace api.Controllers
         }
 
         [HttpPost]
-        [Route("api/pelada")]
+        [Route("api/peladas")]
         public JsonResult Create([FromBody]Pelada obj)
         {
             try
@@ -43,7 +43,7 @@ namespace api.Controllers
 
         [HttpPost]
         [Authorize(Policy = "NeedsPeladaAccess")]
-        [Route("api/pelada/{peladaId}/add-user")]
+        [Route("api/peladas/{peladaId}/add-user")]
         public JsonResult AddUserToPelada([FromRoute]int peladaId, [FromBody]PeladaUser obj)
         {
             try

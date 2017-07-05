@@ -8,8 +8,8 @@ using api.Context;
 namespace api.Migrations
 {
     [DbContext(typeof(CdpContext))]
-    [Migration("20170622002411_fixingTablePeladaEventUser")]
-    partial class fixingTablePeladaEventUser
+    [Migration("20170705014553_InititalDatabase")]
+    partial class InititalDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -63,6 +63,10 @@ namespace api.Migrations
                     b.Property<int>("CreatedByUserId")
                         .HasColumnName("createdByUserId");
 
+                    b.Property<string>("Day")
+                        .IsRequired()
+                        .HasColumnName("day");
+
                     b.Property<string>("Name")
                         .HasColumnName("name")
                         .HasMaxLength(50);
@@ -82,6 +86,9 @@ namespace api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnName("id");
 
+                    b.Property<int>("ArenaId")
+                        .HasColumnName("arenaId");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnName("createdAt");
 
@@ -91,10 +98,12 @@ namespace api.Migrations
                     b.Property<int>("PeladaId")
                         .HasColumnName("peladaId");
 
-                    b.Property<int>("Quantity")
-                        .HasColumnName("quantity");
+                    b.Property<int>("QuantityOfUsers")
+                        .HasColumnName("quantityOfUsers");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ArenaId");
 
                     b.HasIndex("PeladaId");
 
@@ -220,6 +229,11 @@ namespace api.Migrations
 
             modelBuilder.Entity("domain.Entities.PeladaEvent", b =>
                 {
+                    b.HasOne("domain.Entities.Arena", "Arena")
+                        .WithMany("PeladaEvents")
+                        .HasForeignKey("ArenaId")
+                        .HasConstraintName("ForeignKey_PeladaEvent_ArenaId");
+
                     b.HasOne("domain.Entities.Pelada", "Pelada")
                         .WithMany("PeladaEvents")
                         .HasForeignKey("PeladaId")

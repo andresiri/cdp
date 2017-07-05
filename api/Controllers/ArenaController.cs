@@ -22,7 +22,7 @@ namespace api.Controllers
         }
 
         [HttpPost]
-        [Route("api/arena")]
+        [Route("api/arenas")]
         public JsonResult Create([FromBody]Arena obj)
         {
             try
@@ -41,7 +41,7 @@ namespace api.Controllers
         }
 
         [HttpGet]
-        [Route("api/arena")]
+        [Route("api/arenas")]
         public JsonResult Get([FromQuery]string description)
         {
             try

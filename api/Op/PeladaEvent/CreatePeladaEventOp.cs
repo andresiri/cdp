@@ -1,5 +1,4 @@
-﻿using System;
-using api.Context.Transaction;
+﻿using api.Context.Transaction;
 using FluentValidation;
 
 namespace api.Op.PeladaEvent
