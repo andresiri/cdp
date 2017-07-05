@@ -103,6 +103,7 @@ namespace api.Context
                 b.Property(p => p.UserId).IsRequired().HasColumnName("userId");
                 b.Property(p => p.CreatedAt).IsRequired().HasColumnName("createdAt");
                 b.Property(p => p.IsMonthly).IsRequired().HasDefaultValue(false).HasColumnName("isMonthly");
+                b.Property(p => p.IsAdministrator).IsRequired().HasDefaultValue(false).HasColumnName("isAdministrator");
                 b.HasAlternateKey(a => new { a.PeladaId, a.UserId });
                 b.HasOne(p => p.User).WithMany(p => p.PeladaUsers).HasForeignKey(p => p.UserId).HasConstraintName("ForeignKey_PeladaUser_UserId");
                 b.HasOne(p => p.Pelada).WithMany(p => p.PeladaUsers).HasForeignKey(p => p.PeladaId).HasConstraintName("ForeignKey_PeladaUser_PeladaId");

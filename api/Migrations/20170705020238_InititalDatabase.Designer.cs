@@ -8,7 +8,7 @@ using api.Context;
 namespace api.Migrations
 {
     [DbContext(typeof(CdpContext))]
-    [Migration("20170705014553_InititalDatabase")]
+    [Migration("20170705020238_InititalDatabase")]
     partial class InititalDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -147,6 +147,11 @@ namespace api.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnName("createdAt");
+
+                    b.Property<bool>("IsAdministrator")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("isAdministrator")
+                        .HasDefaultValue(false);
 
                     b.Property<bool>("IsMonthly")
                         .ValueGeneratedOnAdd()

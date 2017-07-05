@@ -2,6 +2,7 @@
 using domain.Entities;
 using domain.Repositories;
 using System.Linq;
+using System;
 
 namespace api.Context.Repository
 {
@@ -14,6 +15,15 @@ namespace api.Context.Repository
         public List<PeladaUser> GetPeladasByUser(int userId)
         {
             var peladasUser = _context.PeladaUser.Where(w => w.UserId.Equals(userId)).ToList();
+
+            return peladasUser;
+        }
+
+        public List<PeladaUser> GetPeladasByUserWithAdminAccess(int userId)
+        {
+            var peladasUser = _context.PeladaUser.Where(
+                w => w.UserId.Equals(userId) && w.IsAdministrator.Equals(true)
+            ).ToList();
 
             return peladasUser;
         }

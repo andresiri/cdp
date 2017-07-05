@@ -147,6 +147,11 @@ namespace api.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnName("createdAt");
 
+                    b.Property<bool>("IsAdministrator")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("isAdministrator")
+                        .HasDefaultValue(false);
+
                     b.Property<bool>("IsMonthly")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("isMonthly")

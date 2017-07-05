@@ -111,6 +111,7 @@ namespace api.Migrations
                     id = table.Column<int>(nullable: false)
                         .Annotation("MySQL:AutoIncrement", true),
                     createdAt = table.Column<DateTime>(nullable: false),
+                    isAdministrator = table.Column<bool>(nullable: false, defaultValue: false),
                     isMonthly = table.Column<bool>(nullable: false, defaultValue: false),
                     peladaId = table.Column<int>(nullable: false),
                     userId = table.Column<int>(nullable: false)

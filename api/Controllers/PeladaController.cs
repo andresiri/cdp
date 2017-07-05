@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using api.Context.Transaction;
 using api.Op.Pelada;
 using api.Op.PeladaUser;
+using System.Collections.Generic;
 
 namespace api.Controllers
 {
@@ -56,6 +57,25 @@ namespace api.Controllers
                 var peladaUserViewModel = _mapper.Map<PeladaUserViewModel>(newPeladaUser);
 
                 return Json(peladaUserViewModel);
+            }
+            catch (Exception ex)
+            {
+                return FormatException(ex);
+            }
+        }
+
+        [HttpGet]
+        [Route("api/peladas")]
+        public JsonResult GetPeladas() {
+
+            try
+            {
+                var op = new GetPeladasByUserOp(_unitOfWork);
+                var peladasUser = op.Execute(new PeladaUser{ UserId = GetUserId() });
+
+                var peladasUserViewModel = _mapper.Map<List<PeladaUserViewModel>>(peladasUser);
+
+                return Json(peladasUserViewModel);
             }
             catch (Exception ex)
             {
