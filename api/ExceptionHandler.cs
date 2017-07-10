@@ -1,5 +1,6 @@
 ﻿using System;
 using domain.Entities.Exceptions;
+
 namespace api
 {
     public static class ExceptionHandler

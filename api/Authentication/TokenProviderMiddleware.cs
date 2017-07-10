@@ -2,13 +2,13 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using api.Context.Transaction;
+using api.Op.Login;
+using domain.Entities;
+using domain.Entities.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using api.Op.Login;
-using api.Context.Transaction;
-using domain.Entities.Model;
-using domain.Entities;
 
 namespace api.Authentication
 {

@@ -1,5 +1,4 @@
-﻿using System;
-namespace api.ViewModel
+﻿namespace api.ViewModel
 {
     public class PeladaUserViewModel
     {

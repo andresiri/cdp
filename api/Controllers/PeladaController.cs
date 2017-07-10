@@ -1,14 +1,14 @@
 ﻿using System;
-using CartolaDaPelada.Controllers;
-using domain.Entities;
-using Microsoft.AspNetCore.Mvc;
-using AutoMapper;
-using api.ViewModel;
-using Microsoft.AspNetCore.Authorization;
+using System.Collections.Generic;
 using api.Context.Transaction;
 using api.Op.Pelada;
 using api.Op.PeladaUser;
-using System.Collections.Generic;
+using api.ViewModel;
+using AutoMapper;
+using CartolaDaPelada.Controllers;
+using domain.Entities;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
 {

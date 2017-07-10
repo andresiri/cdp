@@ -1,12 +1,13 @@
 ﻿using System;
-using System.Text;
 using System.Security.Claims;
+using System.Security.Principal;
+using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.Extensions.Options;
 using api.Authentication;
 using domain.Entities;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 
 namespace api
 {
@@ -71,7 +72,7 @@ namespace api
             {
                 if (user != null)
                 {
-                    return Task.FromResult(new ClaimsIdentity(new System.Security.Principal.GenericIdentity(user.Email, "Token"), new Claim[] { }));
+                    return Task.FromResult(new ClaimsIdentity(new GenericIdentity(user.Email, "Token"), new Claim[] { }));
                 }
 
                 // Credentials are invalid, or account doesn't exist

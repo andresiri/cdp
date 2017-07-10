@@ -1,12 +1,12 @@
 ﻿using System;
-using Microsoft.AspNetCore.Mvc;
-using domain.Entities;
-using CartolaDaPelada.Controllers;
-using AutoMapper;
-using api.ViewModel;
-using api.Op.Arena;
-using api.Context.Transaction;
 using System.Collections.Generic;
+using api.Context.Transaction;
+using api.Op.Arena;
+using api.ViewModel;
+using AutoMapper;
+using CartolaDaPelada.Controllers;
+using domain.Entities;
+using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
 {

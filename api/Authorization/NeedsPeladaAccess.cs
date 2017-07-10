@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using api.Context.Transaction;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
-using api.Context.Transaction;
-using api.Op.PeladaUser;
 
 namespace api.Authorization
 {

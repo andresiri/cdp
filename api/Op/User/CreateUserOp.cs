@@ -1,9 +1,9 @@
 ﻿using api.Context.Transaction;
-using domain.Entities.Exceptions;
-using domain.Lib;
 using domain.Entities.Enum;
-using FluentValidation;
+using domain.Entities.Exceptions;
 using domain.Entities.Validations.User;
+using domain.Lib;
+using FluentValidation;
 
 namespace api.Op.User
 {

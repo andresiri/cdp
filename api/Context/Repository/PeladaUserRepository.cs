@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using domain.Entities;
 using domain.Repositories;
-using System.Linq;
-using System;
 
 namespace api.Context.Repository
 {

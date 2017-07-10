@@ -2,6 +2,9 @@
 using api.Context;
 using api.Context.Repository;
 using api.Context.Transaction;
+using api.Op.User;
+using AutoMapper;
+using domain.Entities;
 using domain.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -12,9 +15,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using MySQL.Data.Entity.Extensions;
-using AutoMapper;
-using domain.Entities;
-using api.Op.User;
+using Newtonsoft.Json;
 
 namespace api
 {
@@ -54,8 +55,8 @@ namespace api
             var mvc = services.AddMvc();
             mvc.AddJsonOptions(opt =>
             {
-                opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-                opt.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
+                opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                opt.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
             });
 
             services.AddAuthorization(options =>

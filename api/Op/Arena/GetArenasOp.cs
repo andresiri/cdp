@@ -1,6 +1,6 @@
-﻿using api.Context.Transaction;
+﻿using System.Linq;
+using api.Context.Transaction;
 using FluentValidation;
-using System.Linq;
 
 namespace api.Op.Arena
 {

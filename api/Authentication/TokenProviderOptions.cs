@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.IdentityModel.Tokens;
 using domain.Entities;
+using Microsoft.IdentityModel.Tokens;
 
 namespace api.Authentication
 {

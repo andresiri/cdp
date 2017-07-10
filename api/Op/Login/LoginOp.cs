@@ -1,10 +1,10 @@
 ﻿using api.Context.Transaction;
+using domain.Entities.Enum;
+using domain.Entities.Exceptions;
 using domain.Entities.Model;
+using domain.Entities.Validations.Login;
 using domain.Lib;
 using FluentValidation;
-using domain.Entities.Validations.Login;
-using domain.Entities.Exceptions;
-using domain.Entities.Enum;
 
 namespace api.Op.Login
 {

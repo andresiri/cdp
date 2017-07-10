@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.Linq;
+using domain.Entities.Enum;
+using domain.Entities.Exceptions;
 using domain.Repositories;
 using Microsoft.EntityFrameworkCore;
-using domain.Entities.Exceptions;
-using domain.Entities.Enum;
 
 namespace api.Context.Repository
 {

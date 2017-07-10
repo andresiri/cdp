@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using api.Context.Transaction;
 using domain;
 using domain.Entities.Enum;
 using domain.Entities.Exceptions;
 using FluentValidation;
 using FluentValidation.Results;
-using api.Context.Transaction;
 
 namespace api
 {

@@ -1,6 +1,7 @@
 ﻿using api.ViewModel;
-using domain.Entities;
 using AutoMapper;
+using domain.Entities;
+
 namespace api.AutoMapper
 {
     public class ViewModelToDomainMappingProfile : Profile

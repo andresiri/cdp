@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+
 namespace domain.Entities.Validations.Arena
 {
     public class CreateArenaValidation : AbstractValidator<Entities.Arena>

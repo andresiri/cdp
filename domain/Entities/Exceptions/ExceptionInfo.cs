@@ -1,5 +1,4 @@
-﻿using System;
-namespace domain.Entities.Exceptions
+﻿namespace domain.Entities.Exceptions
 {
     public class ExceptionInfo
     {

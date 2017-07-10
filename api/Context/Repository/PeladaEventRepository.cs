@@ -1,5 +1,6 @@
 ﻿using domain.Entities;
 using domain.Repositories;
+
 namespace api.Context.Repository
 {
     public class PeladaEventRepository : BaseRepository<PeladaEvent>, IPeladaEventRepository

@@ -1,9 +1,9 @@
-﻿using System;
+﻿using domain.Entities.Model;
 using FluentValidation;
 
 namespace domain.Entities.Validations.Login
 {
-    public class LoginValidation : AbstractValidator<Entities.Model.LoginModel>
+    public class LoginValidation : AbstractValidator<LoginModel>
     {
         public LoginValidation()
         {
