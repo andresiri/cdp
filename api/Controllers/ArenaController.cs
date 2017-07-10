@@ -4,7 +4,6 @@ using api.Context.Transaction;
 using api.Op.Arena;
 using api.ViewModel;
 using AutoMapper;
-using CartolaDaPelada.Controllers;
 using domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 

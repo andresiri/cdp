@@ -3,7 +3,6 @@ using api.Context.Transaction;
 using api.Op.User;
 using api.ViewModel;
 using AutoMapper;
-using CartolaDaPelada.Controllers;
 using domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

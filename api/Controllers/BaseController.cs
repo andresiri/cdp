@@ -4,7 +4,7 @@ using domain.Entities.Exceptions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CartolaDaPelada.Controllers
+namespace api.Controllers
 {    
     [Authorize]
     public class BaseController : Controller
