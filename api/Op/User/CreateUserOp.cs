@@ -1,7 +1,7 @@
 ﻿using api.Context.Transaction;
-using domain.Entities.Enum;
-using domain.Entities.Exceptions;
 using domain.Entities.Validations.User;
+using domain.Enum;
+using domain.Exceptions;
 using domain.Lib;
 using FluentValidation;
 

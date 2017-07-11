@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using domain.Entities.Enum;
-using domain.Entities.Exceptions;
+using domain.Enum;
+using domain.Exceptions;
 using domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using api.Context.Transaction;
 using domain.Entities;
-using domain.Entities.Enum;
+using domain.Enum;
 using domain.Lib;
 using Microsoft.EntityFrameworkCore;
 

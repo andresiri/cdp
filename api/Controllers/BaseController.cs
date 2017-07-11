@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using domain.Entities.Exceptions;
+using domain.Exceptions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

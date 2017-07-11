@@ -6,9 +6,6 @@
     <PackageReference Include="FluentValidation" Version="7.1.0" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Entities\Model\" />
-    <Folder Include="Entities\Enum\" />
-    <Folder Include="Entities\Exceptions\" />
     <Folder Include="Entities\Validations\Pelada\" />
     <Folder Include="Entities\Validations\Login\" />
     <Folder Include="Entities\Validations\Arena\" />

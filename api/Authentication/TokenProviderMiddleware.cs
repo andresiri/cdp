@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using api.Context.Transaction;
 using api.Op.Login;
 using domain.Entities;
-using domain.Entities.Model;
+using domain.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
@@ -61,7 +61,7 @@ namespace api.Authentication
 
             var loginOp = new LoginOp(_unitOfWork);
 
-            var user = new User();
+            User user;
 
             try
             {

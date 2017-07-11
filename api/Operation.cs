@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using api.Context.Transaction;
 using domain;
-using domain.Entities.Enum;
-using domain.Entities.Exceptions;
+using domain.Enum;
+using domain.Exceptions;
 using FluentValidation;
 using FluentValidation.Results;
 

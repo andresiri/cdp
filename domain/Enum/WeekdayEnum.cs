@@ -1,4 +1,4 @@
-﻿namespace domain.Entities.Enum
+﻿namespace domain.Enum
 {
     public class WeekdayEnum
     {

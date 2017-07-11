@@ -1,5 +1,5 @@
 ﻿using System;
-using domain.Entities.Exceptions;
+using domain.Exceptions;
 
 namespace api
 {

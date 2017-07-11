@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace domain.Entities.Exceptions
+namespace domain.Exceptions
 {
     public class CustomException : Exception
     {
