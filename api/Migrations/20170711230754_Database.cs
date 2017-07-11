@@ -111,7 +111,7 @@ namespace api.Migrations
                     id = table.Column<int>(nullable: false)
                         .Annotation("MySQL:AutoIncrement", true),
                     createdAt = table.Column<DateTime>(nullable: false),
-                    name = table.Column<string>(maxLength: 50, nullable: true),
+                    name = table.Column<string>(maxLength: 50, nullable: false),
                     peladaId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>

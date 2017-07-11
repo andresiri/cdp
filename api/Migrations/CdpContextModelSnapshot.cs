@@ -148,6 +148,7 @@ namespace api.Migrations
                         .HasColumnName("createdAt");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnName("name")
                         .HasMaxLength(50);
 

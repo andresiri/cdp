@@ -8,7 +8,7 @@ using api.Context;
 namespace api.Migrations
 {
     [DbContext(typeof(CdpContext))]
-    [Migration("20170711015740_Database")]
+    [Migration("20170711230754_Database")]
     partial class Database
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -149,6 +149,7 @@ namespace api.Migrations
                         .HasColumnName("createdAt");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnName("name")
                         .HasMaxLength(50);
 

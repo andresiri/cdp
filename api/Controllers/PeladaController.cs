@@ -23,7 +23,7 @@ namespace api.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        #region POST "api/peladas"
+        #region PST "api/peladas"
 
         [HttpPost]
         [Route("api/peladas")]
@@ -46,7 +46,7 @@ namespace api.Controllers
 
         #endregion
 
-        #region POST "api/peladas/{peladaId}/add-user"
+        #region PST "api/peladas/{peladaId}/add-user"
         
         [HttpPost]
         [Authorize(Policy = "NeedsPeladaAccess")]
@@ -72,7 +72,7 @@ namespace api.Controllers
 
         #endregion
 
-        #region POST "api/peladas/{peladId}/add-team
+        #region PST "api/peladas/{peladId}/add-team
 
         [HttpPost]
         [Authorize(Policy = "NeedsPeladaAccess")]
