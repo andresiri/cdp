@@ -8,9 +8,10 @@ namespace api.Context.Transaction
         protected CdpContext context;
         //readonly IDbContextTransaction transaction;
 
-        UserRepository userRepository;
+        UserRepository _userRepository;
         ArenaRepository arenaRepository;
         PeladaRepository peladaRepository;
+        PeladaTeamRepository peladaTeamRepository;
         PeladaUserRepository peladaUserRepository;
         PeladaEventRepository peladaEventRepository;
 
@@ -20,9 +21,10 @@ namespace api.Context.Transaction
             //transaction = context.Database.BeginTransaction();
         }
 
-        public UserRepository UserRepository => userRepository ?? (userRepository = new UserRepository(context));
+        public UserRepository UserRepository => _userRepository ?? (_userRepository = new UserRepository(context));
         public ArenaRepository ArenaRepository => arenaRepository ?? (arenaRepository = new ArenaRepository(context));
         public PeladaRepository PeladaRepository => peladaRepository ?? (peladaRepository = new PeladaRepository(context));
+        public PeladaTeamRepository PeladaTeamRepository => peladaTeamRepository ?? (peladaTeamRepository = new PeladaTeamRepository(context));
         public PeladaUserRepository PeladaUserRepository => peladaUserRepository ?? (peladaUserRepository = new PeladaUserRepository(context));
         public PeladaEventRepository PeladaEventRepository => peladaEventRepository ?? (peladaEventRepository = new PeladaEventRepository(context));
 

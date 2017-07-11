@@ -11,14 +11,16 @@ namespace api.Controllers
 {
     public class PeladaEventController : BaseController
     {
-        readonly IMapper _mapper;
-        readonly IUnitOfWork _unitOfWork;
+        public readonly IMapper Mapper;
+        public readonly IUnitOfWork UnitOfWork;
 
         public PeladaEventController(IMapper mapper, IUnitOfWork unitOfWork)
         {
-            _mapper = mapper;
-            _unitOfWork = unitOfWork;
+            Mapper = mapper;
+            UnitOfWork = unitOfWork;
         }
+
+        #region POST "api/peladas/{peladaId}/pelada-events"
 
         [HttpPost]
         [Authorize(Policy = "NeedsPeladaAccess")]
@@ -29,10 +31,10 @@ namespace api.Controllers
             {
                 obj.PeladaId = peladaId;    
 
-                var op = new CreatePeladaEventOp(_unitOfWork);
+                var op = new CreatePeladaEventOp(UnitOfWork);
                 var newPeladaEvent = op.Execute(obj);
 
-                var peladaEventViewModel = _mapper.Map<PeladaEventViewModel>(newPeladaEvent);
+                var peladaEventViewModel = Mapper.Map<PeladaEventViewModel>(newPeladaEvent);
 
                 return Json(peladaEventViewModel);
             }
@@ -41,5 +43,7 @@ namespace api.Controllers
                 return FormatException(ex);
             }
         }
+
+        #endregion             
     }
 }

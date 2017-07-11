@@ -11,6 +11,7 @@ namespace api.AutoMapper
             CreateMap<User, UserViewModel>();
             CreateMap<Arena, ArenaViewModel>();
             CreateMap<Pelada, PeladaViewModel>();
+            CreateMap<PeladaTeam, PeladaTeamViewModel>();
             CreateMap<PeladaUser, PeladaUserViewModel>();
             CreateMap<PeladaEvent, PeladaEventViewModel>();
         }

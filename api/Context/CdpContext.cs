@@ -30,6 +30,7 @@ namespace api.Context
             ConfigureArena(modelBuilder);
             ConfigurePelada(modelBuilder);
             ConfigurePeladaUser(modelBuilder);
+            ConfigurePeladaTeam(modelBuilder);
             ConfigurePeladaEvent(modelBuilder);
             ConfigurePeladaEventUser(modelBuilder);
 
@@ -92,6 +93,20 @@ namespace api.Context
             });
         }
 
+        private static void ConfigurePeladaTeam(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<PeladaTeam>(b =>
+            {
+                b.ToTable("peladaTeam");
+                b.HasKey(p => p.Id);
+                b.Property(p => p.Id).HasColumnName("id");
+                b.Property(p => p.Name).HasColumnName("name").HasMaxLength(50);
+                b.Property(p => p.PeladaId).IsRequired().HasColumnName("peladaId");               
+                b.Property(p => p.CreatedAt).IsRequired().HasColumnName("createdAt");  
+                b.HasOne(p => p.Pelada).WithMany(p => p.PeladaTeams).HasForeignKey(p => p.PeladaId).HasConstraintName("ForeignKey_PeladaTeam_PeladaId");
+            });
+        }
+        
         private static void ConfigurePeladaUser(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<PeladaUser>(b =>

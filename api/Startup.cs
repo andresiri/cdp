@@ -47,6 +47,7 @@ namespace api
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IArenaRepository, ArenaRepository>();
             services.AddScoped<IPeladaRepository, PeladaRepository>();
+            services.AddScoped<IPeladaTeamRepository, PeladaTeamRepository>();
             services.AddScoped<IPeladaUserRepository, PeladaUserRepository>();
 
             services.AddAutoMapper();

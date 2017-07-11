@@ -10,6 +10,7 @@ namespace domain.Entities
         public string Day { get; set; }
 
         public virtual User CreatedByUser { get; set; }
+        public virtual List<PeladaTeam> PeladaTeams { get; set; }
         public virtual List<PeladaUser> PeladaUsers { get; set; }
         public virtual List<PeladaEvent> PeladaEvents { get; set; }
         public virtual Arena ArenaDefault { get; set; }

@@ -38,7 +38,7 @@ namespace api.Context.Repository
                     throw new CustomException(ExceptionMessage.DUPLICATE_KEY, ExceptionType.DATABASE_ERROR);
                 }
 
-                throw ex;
+                throw;
             }
         }
     }

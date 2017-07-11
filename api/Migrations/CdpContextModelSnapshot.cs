@@ -138,6 +138,29 @@ namespace api.Migrations
                     b.ToTable("peladaEventUser");
                 });
 
+            modelBuilder.Entity("domain.Entities.PeladaTeam", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("id");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnName("createdAt");
+
+                    b.Property<string>("Name")
+                        .HasColumnName("name")
+                        .HasMaxLength(50);
+
+                    b.Property<int>("PeladaId")
+                        .HasColumnName("peladaId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PeladaId");
+
+                    b.ToTable("peladaTeam");
+                });
+
             modelBuilder.Entity("domain.Entities.PeladaUser", b =>
                 {
                     b.Property<int>("Id")
@@ -255,6 +278,14 @@ namespace api.Migrations
                         .WithMany("PeladaEventUsers")
                         .HasForeignKey("UserId")
                         .HasConstraintName("ForeignKey_PeladaEventUser_UserId");
+                });
+
+            modelBuilder.Entity("domain.Entities.PeladaTeam", b =>
+                {
+                    b.HasOne("domain.Entities.Pelada", "Pelada")
+                        .WithMany("PeladaTeams")
+                        .HasForeignKey("PeladaId")
+                        .HasConstraintName("ForeignKey_PeladaTeam_PeladaId");
                 });
 
             modelBuilder.Entity("domain.Entities.PeladaUser", b =>

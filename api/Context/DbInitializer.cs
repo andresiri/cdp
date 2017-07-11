@@ -11,17 +11,20 @@ namespace api.Context
     {        
         public static void Initialize(CdpContext context)
         {            
-            var ResetData = true;
+            var resetData = true;
 
             context.Database.EnsureCreated();
 
-            if (ResetData)
+            if (resetData)
             {
                 context.Database.ExecuteSqlCommand("DELETE FROM peladaEvent");
                 context.Database.ExecuteSqlCommand("ALTER TABLE peladaEvent AUTO_INCREMENT = 1");
 
                 context.Database.ExecuteSqlCommand("DELETE FROM peladaUser");
                 context.Database.ExecuteSqlCommand("ALTER TABLE peladaUser AUTO_INCREMENT = 1");
+                
+                context.Database.ExecuteSqlCommand("DELETE FROM peladaTeam");
+                context.Database.ExecuteSqlCommand("ALTER TABLE peladaTeam AUTO_INCREMENT = 1");
 
                 context.Database.ExecuteSqlCommand("DELETE FROM pelada");
                 context.Database.ExecuteSqlCommand("ALTER TABLE pelada AUTO_INCREMENT = 1");
@@ -40,8 +43,9 @@ namespace api.Context
             var users = InsertUsers(unitOfWork);
             var peladas = InsertPeladas(unitOfWork, users);
 
-            InsertArenas(unitOfWork);
+            InsertPeladaTeams(unitOfWork, peladas);
             InsertPeladaUsers(unitOfWork, users, peladas);
+            InsertArenas(unitOfWork);          
 
             unitOfWork.Save();           
         }
@@ -150,6 +154,21 @@ namespace api.Context
             foreach (var peladaUser in peladaUsers)
             {
                 unitOfWork.PeladaUserRepository.Create(peladaUser);
+            }
+        }
+
+        public static void InsertPeladaTeams(UnitOfWork unitOfWork, List<Pelada> peladas)
+        {
+            var peladaTeams = new PeladaTeam[]
+            {
+                new PeladaTeam() {PeladaId = peladas[0].Id, Name = "Time 1"},
+                new PeladaTeam() {PeladaId = peladas[0].Id, Name = "Time 2"},
+                new PeladaTeam() {PeladaId = peladas[0].Id, Name = "Time 3"}
+            };
+            
+            foreach (var peladaTeam in peladaTeams)
+            {
+                unitOfWork.PeladaTeamRepository.Create(peladaTeam);
             }
         }
     }

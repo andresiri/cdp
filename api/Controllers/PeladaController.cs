@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using api.Context.Transaction;
 using api.Op.Pelada;
+using api.Op.PeladaTeam;
 using api.Op.PeladaUser;
 using api.ViewModel;
 using AutoMapper;
@@ -22,6 +23,8 @@ namespace api.Controllers
             _unitOfWork = unitOfWork;
         }
 
+        #region POST "api/peladas"
+
         [HttpPost]
         [Route("api/peladas")]
         public JsonResult Create([FromBody]Pelada obj)
@@ -41,6 +44,10 @@ namespace api.Controllers
             }
         }
 
+        #endregion
+
+        #region POST "api/peladas/{peladaId}/add-user"
+        
         [HttpPost]
         [Authorize(Policy = "NeedsPeladaAccess")]
         [Route("api/peladas/{peladaId}/add-user")]
@@ -63,6 +70,36 @@ namespace api.Controllers
             }
         }
 
+        #endregion
+
+        #region POST "api/peladas/{peladId}/add-team
+
+        [HttpPost]
+        [Authorize(Policy = "NeedsPeladaAccess")]
+        [Route("api/peladas/{peladaId}/add-team")]
+        public JsonResult AddTeam([FromRoute]int peladaId, [FromBody]PeladaTeam obj)
+        {
+            try
+            {
+                obj.PeladaId = peladaId;
+
+                var op = new CreatePeladaTeamOp(_unitOfWork);
+                var newPeladaTeam = op.Execute(obj);
+
+                var peladaUserViewModel = _mapper.Map<PeladaTeamViewModel>(newPeladaTeam);
+
+                return Json(peladaUserViewModel);
+            }
+            catch (Exception ex)
+            {
+                return FormatException(ex);
+            }
+        }
+
+        #endregion
+
+        #region GET "api/peladas"
+
         [HttpGet]
         [Route("api/peladas")]
         public JsonResult GetPeladas() {
@@ -81,5 +118,7 @@ namespace api.Controllers
                 return FormatException(ex);
             }
         }
+
+        #endregion             
     }
 }

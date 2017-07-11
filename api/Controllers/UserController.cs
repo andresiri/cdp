@@ -22,6 +22,8 @@ namespace api.Controllers
             _createUserOp = createUserOp;
         }
 
+        #region POST "api/users"
+
         [HttpPost]
         [AllowAnonymous]
         [Route("api/users")]
@@ -40,5 +42,7 @@ namespace api.Controllers
                 return FormatException(ex);
             }
         }
+
+        #endregion        
     }
 }

@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace api.Migrations
 {
-    public partial class InititalDatabase : Migration
+    public partial class Database : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -104,6 +105,27 @@ namespace api.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "peladaTeam",
+                columns: table => new
+                {
+                    id = table.Column<int>(nullable: false)
+                        .Annotation("MySQL:AutoIncrement", true),
+                    createdAt = table.Column<DateTime>(nullable: false),
+                    name = table.Column<string>(maxLength: 50, nullable: true),
+                    peladaId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_peladaTeam", x => x.id);
+                    table.ForeignKey(
+                        name: "ForeignKey_PeladaTeam_PeladaId",
+                        column: x => x.peladaId,
+                        principalTable: "pelada",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "peladaUser",
                 columns: table => new
                 {
@@ -192,6 +214,11 @@ namespace api.Migrations
                 column: "userId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_peladaTeam_peladaId",
+                table: "peladaTeam",
+                column: "peladaId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_peladaUser_userId",
                 table: "peladaUser",
                 column: "userId");
@@ -201,6 +228,9 @@ namespace api.Migrations
         {
             migrationBuilder.DropTable(
                 name: "peladaEventUser");
+
+            migrationBuilder.DropTable(
+                name: "peladaTeam");
 
             migrationBuilder.DropTable(
                 name: "peladaUser");

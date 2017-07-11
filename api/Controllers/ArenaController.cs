@@ -20,6 +20,8 @@ namespace api.Controllers
             _unitOfWork = unitOfWork;
         }
 
+        #region POST "api/arenas"
+
         [HttpPost]
         [Route("api/arenas")]
         public JsonResult Create([FromBody]Arena obj)
@@ -39,6 +41,10 @@ namespace api.Controllers
             }
         }
 
+        #endregion
+
+        #region GET "api/arenas"
+
         [HttpGet]
         [Route("api/arenas")]
         public JsonResult Get([FromQuery]string description)
@@ -57,5 +63,7 @@ namespace api.Controllers
                 return Json(ex);
             }
         }
+
+        #endregion              
     }
 }
