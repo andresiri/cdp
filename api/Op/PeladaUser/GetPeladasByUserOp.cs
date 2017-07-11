@@ -7,12 +7,7 @@ namespace api.Op.PeladaUser
     {
         public GetPeladasByUserOp(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
-        }
-
-        public override AbstractValidator<domain.Entities.PeladaUser> GetValidation(domain.Entities.PeladaUser entity)
-        {
-            return null;
-        }
+        }        
 
         public override object Process(domain.Entities.PeladaUser entity)
         {

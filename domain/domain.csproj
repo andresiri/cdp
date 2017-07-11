@@ -5,12 +5,4 @@
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="7.1.0" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Entities\Validations\Pelada\" />
-    <Folder Include="Entities\Validations\Login\" />
-    <Folder Include="Entities\Validations\Arena\" />
-    <Folder Include="Entities\Validations\PeladaUser\" />
-    <Folder Include="Entities\Validations\User\" />
-    <Folder Include="Entities\Validations\PeladaEvent\" />
-  </ItemGroup>
 </Project>

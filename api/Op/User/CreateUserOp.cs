@@ -1,5 +1,4 @@
 ﻿using api.Context.Transaction;
-using domain.Entities.Validations.User;
 using domain.Enum;
 using domain.Exceptions;
 using domain.Lib;
@@ -32,6 +31,17 @@ namespace api.Op.User
             var newUser = _unitOfWork.UserRepository.Create(entity);
 
             return newUser;
+        }
+    }
+    
+    public class CreateUserValidation : AbstractValidator<domain.Entities.User>
+    {
+        public CreateUserValidation()
+        {
+            RuleFor(user => user.Email).NotEmpty().EmailAddress().Length(1, 100);
+            RuleFor(user => user.Password).NotEmpty();
+            RuleFor(user => user.FirstName).NotEmpty().Length(1, 100);
+            RuleFor(user => user.LastName).NotEmpty().Length(1, 100);
         }
     }
 }

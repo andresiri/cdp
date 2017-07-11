@@ -7,12 +7,7 @@ namespace api.Op.PeladaEvent
     {
         public CreatePeladaEventOp(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
-        }
-
-        public override AbstractValidator<domain.Entities.PeladaEvent> GetValidation(domain.Entities.PeladaEvent entity)
-        {
-            return null;
-        }
+        }       
 
         public override object Process(domain.Entities.PeladaEvent entity)
         {

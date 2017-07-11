@@ -19,7 +19,10 @@ namespace api
             _unitOfWork = unitOfWork;
         }
 
-        public abstract AbstractValidator<T> GetValidation(T entity);
+        public virtual AbstractValidator<T> GetValidation(T entity)
+        {
+            return null;
+        }
 
         public abstract object Process(T entity);
 

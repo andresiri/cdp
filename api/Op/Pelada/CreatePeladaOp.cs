@@ -1,5 +1,4 @@
 ﻿using api.Context.Transaction;
-using domain.Entities.Validations.Pelada;
 using FluentValidation;
 
 namespace api.Op.Pelada
@@ -20,6 +19,15 @@ namespace api.Op.Pelada
             var newPelada = _unitOfWork.PeladaRepository.Create(entity);
 
             return newPelada;
+        }
+    }
+    
+    public class CreatePeladaValidation : AbstractValidator<domain.Entities.Pelada>
+    {
+        public CreatePeladaValidation()
+        {
+            RuleFor(pelada => pelada.Name).NotEmpty();
+            RuleFor(pelada => pelada.Day).NotEmpty();
         }
     }
 }

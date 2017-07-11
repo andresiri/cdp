@@ -1,5 +1,4 @@
 ﻿using api.Context.Transaction;
-using domain.Entities.Validations.PeladaUser;
 using FluentValidation;
 
 namespace api.Op.PeladaUser
@@ -20,6 +19,15 @@ namespace api.Op.PeladaUser
             var newPeladaUser = _unitOfWork.PeladaUserRepository.Create(entity);
 
             return newPeladaUser;
+        }
+    }
+    
+    public class CreatePeladaUserValidation : AbstractValidator<domain.Entities.PeladaUser>
+    {
+        public CreatePeladaUserValidation()
+        {
+            RuleFor(peladaUser => peladaUser.UserId).NotEmpty();
+            RuleFor(peladaUser => peladaUser.PeladaId).NotEmpty();
         }
     }
 }

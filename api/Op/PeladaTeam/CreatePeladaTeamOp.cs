@@ -7,12 +7,7 @@ namespace api.Op.PeladaTeam
     {
         public CreatePeladaTeamOp(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
-        }
-
-        public override AbstractValidator<domain.Entities.PeladaTeam> GetValidation(domain.Entities.PeladaTeam entity)
-        {
-            return null;
-        }
+        }       
 
         public override object Process(domain.Entities.PeladaTeam entity)
         {

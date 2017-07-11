@@ -1,5 +1,4 @@
 ﻿using api.Context.Transaction;
-using domain.Entities.Validations.Login;
 using domain.Enum;
 using domain.Exceptions;
 using domain.Lib;
@@ -36,6 +35,15 @@ namespace api.Op.Login
             }
 
             throw new CustomException(ExceptionMessage.INVALID_USERNAME_PASSWORD, ExceptionType.LOGIN_ERROR);
+        }
+    }
+    
+    public class LoginValidation : AbstractValidator<LoginModel>
+    {
+        public LoginValidation()
+        {
+            RuleFor(login => login.Email).NotEmpty().EmailAddress();
+            RuleFor(login => login.Password).NotEmpty();
         }
     }
 }

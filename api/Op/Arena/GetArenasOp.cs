@@ -8,12 +8,7 @@ namespace api.Op.Arena
     {
         public GetArenasOp(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
-        }
-
-        public override AbstractValidator<domain.Entities.Arena> GetValidation(domain.Entities.Arena entity)
-        {
-            return null;
-        }
+        }       
 
         public override object Process(domain.Entities.Arena entity)
         {
