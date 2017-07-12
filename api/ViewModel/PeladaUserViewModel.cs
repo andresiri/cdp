@@ -1,10 +1,7 @@
-﻿using domain.Entities;
-
-namespace api.ViewModel
+﻿namespace api.ViewModel
 {
     public class PeladaUserViewModel
-    {       
-        public int UserId { get; set; }
+    {              
         public int PeladaId { get; set; }
         public string PeladaName { get; set; }
         public bool IsMonthly { get; set; }

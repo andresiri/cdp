@@ -20,9 +20,7 @@ namespace api.Context.Repository
 
         public List<PeladaUser> GetPeladasByUserWithAdminAccess(int userId)
         {
-            var peladasUser = _context.PeladaUser.Where(
-                w => w.UserId.Equals(userId) && w.IsAdministrator.Equals(true)
-            ).ToList();
+            var peladasUser = _context.PeladaUser.Where(w => w.UserId.Equals(userId) && w.IsAdministrator.Equals(true)).ToList();
 
             return peladasUser;
         }
