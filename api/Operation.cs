@@ -14,7 +14,7 @@ namespace api
     {
         public readonly IUnitOfWork _unitOfWork;
 
-        public Operation(IUnitOfWork unitOfWork)
+        protected Operation(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

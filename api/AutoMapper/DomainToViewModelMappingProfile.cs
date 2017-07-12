@@ -12,7 +12,10 @@ namespace api.AutoMapper
             CreateMap<Arena, ArenaViewModel>();
             CreateMap<Pelada, PeladaViewModel>();
             CreateMap<PeladaTeam, PeladaTeamViewModel>();
-            CreateMap<PeladaUser, PeladaUserViewModel>();
+
+            CreateMap<PeladaUser, PeladaUserViewModel>()
+                .ForMember(viewModel => viewModel.PeladaName, opt => opt.MapFrom(model => model.Pelada.Name));
+            
             CreateMap<PeladaEvent, PeladaEventViewModel>();
         }
     }
